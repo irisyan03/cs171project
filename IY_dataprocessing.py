@@ -17,6 +17,7 @@ playlists = json.load(f)["playlists"]
 # Number of playlists
 print(len(playlists))
 cleaned_playlist_data = []
+total_songs = 0
 
 for p in range(len(playlists)):
     # playlist name
@@ -39,6 +40,7 @@ for p in range(len(playlists)):
             "dateAdded": t["addedDate"]}
         )
     cleaned_playlist_data[p]["num_tracks"] = counter
+    total_songs += counter
 
 f.close()
 
@@ -103,12 +105,14 @@ stats = {
     "topArtists" : topArtists,
     "topSongs" : topSongs,
     "topArtists_time" : topArtists_time,
-    "topSongs_time" : topSongs_time
+    "topSongs_time" : topSongs_time,
+    "numPlaylists": len(playlists),
+    "avgLengthPlaylist": total_songs/len(playlists)
 }
 
-# new = open("IY_top_stats.json", "x")
-# new.write(json.dumps(stats, indent = 4))
-# new.close()
+new = open("IY_top_stats.json", "x")
+new.write(json.dumps(stats, indent = 4))
+new.close()
 
 
     
