@@ -1,0 +1,31 @@
+{
+    "timeListened": 3869307102,
+    "topArtists": [
+        "Bruno Mars",
+        "Taylor Swift",
+        "iann dior",
+        "James Arthur",
+        "Lauv"
+    ],
+    "topSongs": [
+        "Skyfall",
+        "On The Altar",
+        "For Tonight",
+        "double take",
+        "@ my worst"
+    ],
+    "topArtists_time": {
+        "Bruno Mars": 76428832,
+        "Taylor Swift": 87050676,
+        "iann dior": 100678891,
+        "James Arthur": 102938138,
+        "Lauv": 140696165
+    },
+    "topSongs_time": {
+        "Skyfall": 20758957,
+        "On The Altar": 20874269,
+        "For Tonight": 21345542,
+        "double take": 22285934,
+        "@ my worst": 28382711
+    }
+}
