@@ -11,7 +11,9 @@ function updateAllVisualizations(){
 
 // load data using promises
 let promises = [
-    d3.json("data/IY_data_cleaned.json")
+    d3.json("data/IY_data_cleaned.json"),
+    d3.json("IY_top_stats.json"),
+    d3.json("general_top_stats.json")
 ];
 
 Promise.all(promises)
@@ -33,5 +35,8 @@ function initMainPage(dataArray) {
     console.log(selectedYear);
     stackedBarChart = new StackedBarChart('stackedBarChartDiv', dataArray[0]);
 
+    // instantiate data cards
+    dataCardPersonal = new DataCard('personal-card',dataArray[1],1);
+    dataCardAggregate = new DataCard('aggregate-card',dataArray[2],0)
 }
 
