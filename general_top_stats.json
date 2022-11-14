@@ -1,0 +1,32 @@
+{
+    "topArtistsByCount": [
+        "The Weeknd",
+        "Rihanna",
+        "Kendrick Lamar",
+        "Kanye West",
+        "Drake"
+    ],
+    "topSongsByCount": [
+        "Ignition - Remix",
+        "Broccoli (feat. Lil Yachty)",
+        "Ride",
+        "Roses",
+        "Closer"
+    ],
+    "topArtistsByCount_count": {
+        "The Weeknd": 1644,
+        "Rihanna": 1734,
+        "Kendrick Lamar": 1902,
+        "Kanye West": 2592,
+        "Drake": 4877
+    },
+    "topSongsByCount_count": {
+        "Ignition - Remix": 222,
+        "Broccoli (feat. Lil Yachty)": 226,
+        "Ride": 229,
+        "Roses": 241,
+        "Closer": 335
+    },
+    "numPlaylists": 10000,
+    "avgLengthPlaylist": 28.1
+}
