@@ -33,9 +33,9 @@ class StackedBarChart {
 
         // add title
         vis.svg.append('g')
-            .attr('class', 'title line-title')
             .append('text')
             .text('Number of Tracks per Playlist over Time')
+            .attr('class', 'chart-title line-title')
             .attr('transform', `translate(${vis.width / 2}, 10)`)
             .attr('text-anchor', 'middle');
 

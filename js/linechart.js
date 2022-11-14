@@ -32,9 +32,9 @@ class LineChart {
 
         // add title
         vis.svg.append('g')
-            .attr('class', 'title line-title')
             .append('text')
             .text('Number of Tracks Added to Playlists over Time')
+            .attr('class', 'chart-title')
             .attr('transform', `translate(${vis.width / 2}, 10)`)
             .attr('text-anchor', 'middle');
 
