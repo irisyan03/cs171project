@@ -66,46 +66,73 @@ print(merged_history[:5])
 
 # calculate some key metrics
 time_listened = 0
-artists = {}
-songs = {}
+artists_time = {}
+songs_time = {}
+artists_count = {}
+songs_count = {}
+
 for track in merged_history:
     time_listened += track["msPlayed"]
-    if track["artistName"] in artists:
-        artists[track["artistName"]] += track["msPlayed"]
+    if track["artistName"] in artists_time:
+        artists_time[track["artistName"]] += track["msPlayed"]
     else:
-        artists[track["artistName"]] = track["msPlayed"]
-    if track["trackName"] in songs:
-        songs[track["trackName"]] += track["msPlayed"]
+        artists_time[track["artistName"]] = track["msPlayed"]
+    if track["trackName"] in songs_time:
+        songs_time[track["trackName"]] += track["msPlayed"]
     else:
-        songs[track["trackName"]] = track["msPlayed"]
+        songs_time[track["trackName"]] = track["msPlayed"]
+    if track["artistName"] in artists_count:
+        artists_count[track["artistName"]] += 1
+    else:
+        artists_count[track["artistName"]] = 1
+    if track["trackName"] in songs_count:
+        songs_count[track["trackName"]] += 1
+    else:
+        songs_count[track["trackName"]] = 1
 
 # new = open("IY_top_stats.json", "a")
-# Process for top 5 of each
-topArtists = sorted(artists, key = artists.get)[-5:]
-topSongs = sorted(songs, key = songs.get)[-5:]
+# Process for top 5 of each, by time
+topArtists_bytime = sorted(artists_time, key = artists_time.get)[-5:]
+topSongs_bytime = sorted(songs_time, key = songs_time.get)[-5:]
 
-topArtists_time = {}
-for a in topArtists:
-    topArtists_time[a] = artists[a]
+# Process for top 5 of each, by count
+topArtists_bycount = sorted(artists_count, key = artists_count.get)[-5:]
+topSongs_bycount = sorted(songs_count, key = songs_count.get)[-5:]
 
-topSongs_time = {}
-for s in topSongs:
-    topSongs_time[s] = songs[s]
+topArtists_bytime_min = {}
+for a in topArtists_bytime:
+    topArtists_bytime_min[a] = artists_time[a]
+
+topSongs_bytime_min = {}
+for s in topSongs_bytime:
+    topSongs_bytime_min[s] = songs_time[s]
+
+topArtists_bycount_count = {}
+for a in topArtists_bycount:
+    topArtists_bycount_count[a] = artists_count[a]
+
+topSongs_bycount_count = {}
+for s in topSongs_bycount:
+    topSongs_bycount_count[s] = songs_count[s]
 
 # Names only of top 5 artists and songs
-print(topArtists)
-print(topSongs)
+print(topArtists_bytime)
+print(topSongs_bytime)
 
 # Number of ms listened to
-print(topArtists_time)
-print(topSongs_time) 
+print(topArtists_bytime_min)
+print(topSongs_bytime_min) 
 
 stats = {
     "timeListened" : time_listened, 
-    "topArtists" : topArtists,
-    "topSongs" : topSongs,
-    "topArtists_time" : topArtists_time,
-    "topSongs_time" : topSongs_time,
+    # "topArtistsByTime" : topArtists_bytime,
+    # "topSongsByTime" : topSongs_bytime,
+    # "topArtistsByTime_time" : topArtists_bytime_min,
+    # "topSongsByTime_time" : topSongs_bytime_min,
+    "topArtistsByCount" : topArtists_bycount,
+    "topSongsByCount" : topSongs_bycount,
+    "topArtistsByCount_count" : topArtists_bycount_count,
+    "topSongsByCount_count" : topSongs_bycount_count,
     "numPlaylists": len(playlists),
     "avgLengthPlaylist": total_songs/len(playlists)
 }
