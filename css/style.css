@@ -96,3 +96,7 @@ h3 {
     background: var(--accent-green);
     cursor: pointer;
 }
+
+.btn-primary{
+    background-color: var(--main-green);
+}
