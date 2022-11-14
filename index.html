@@ -28,6 +28,8 @@
 			</div>
 		</div>
 
+		<!-- line chart -->
+		<h2>How are YOU using Spotify?</h2>
 		<div class="row"
 			 style="height: 80vh; padding-top: 0; padding-left: 1vh; padding-right: 1vh; padding-bottom: 1vh">
 			<div class="col">
@@ -35,7 +37,22 @@
 					 class="row"
 					 style="height: 71vh; width: 100%;">
 				</div>
+
 			</div>
+		</div>
+
+		<!-- stacked bar chart -->
+		<div class="row"
+			 style="height: 70vh; padding-top: 0; padding-left: 1vh; padding-right: 1vh; padding-bottom: 1vh">
+			<div class="col">
+				<div id="stackedBarChartDiv"
+					 class="row"
+					 style="height: 71vh; width: 100%;">
+				</div>
+			</div>
+		</div>
+		<div class="slidecontainer" style="width: 30%;">
+			<input type="range" min="1" max="100" value="50" class="slider" id="dateSlider" onchange="updateAllVisualizations()">
 		</div>
 
 		<!-- footer -->
@@ -54,5 +71,6 @@
 	<!-- own js files -->
 	<script src="js/main.js"></script>
 	<script src="js/linechart.js"></script>
+	<script src="js/stackedbarchart.js"></script>
 	</body>
 </html>

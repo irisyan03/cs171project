@@ -6,7 +6,7 @@
 let playistLineChart;
 
 function updateAllVisualizations(){
-    // playistLineChart.wrangleData()
+    stackedBarChart.updateVis()
 }
 
 // load data using promises
@@ -27,6 +27,11 @@ function initMainPage(dataArray) {
 
     // instantiate line chart
     playistLineChart = new LineChart('playlistLineChartDiv', dataArray[0]);
+
+    // instantiate stacked bar chart
+    let selectedYear = document.getElementById('dateSlider').value;
+    console.log(selectedYear);
+    stackedBarChart = new StackedBarChart('stackedBarChartDiv', dataArray[0]);
 
 }
 
