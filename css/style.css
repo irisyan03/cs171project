@@ -1,0 +1,49 @@
+:root {
+    --main-green: #0CCE6B;
+    --accent-green: #157A6E;
+    --purple: #758BFD;
+    --white: #FFFFFF;
+    --black: #2D3142;
+}
+
+* {
+    background-color: var(--white);
+}
+
+.title {
+    color: var(--main-green);
+}
+
+.subtitle {
+    font-size: 24px;
+    color: var(--accent-green);
+}
+
+.line {
+    stroke: var(--main-green);
+    stroke-width: 2px;
+}
+
+.circle {
+    fill: var(--accent-green);
+}
+
+.tooltip {
+    border-radius: 5px;
+    background: var(--black);
+    padding: 12px 16px;
+}
+
+.tooltip-background {
+    background: var(--black);
+}
+
+.tooltipArea {
+    opacity: 0;
+}
+
+h3 {
+    background-color: var(--black);
+    color: var(--white);
+    font-size: 16px;
+}
