@@ -1,5 +1,5 @@
-// @ my worst features
-{
+[{
+    "track": "@ my worst",
     "audio_features": [
         {
             "danceability": 0.61,
@@ -22,10 +22,9 @@
             "time_signature": 4
         }
     ]
-}
-
-// For Tonight features
+},
 {
+    "track": "For Tonight",
     "audio_features": [
         {
             "danceability": 0.442,
@@ -48,10 +47,9 @@
             "time_signature": 4
         }
     ]
-}
-
-// double take features
+},
 {
+    "track": "double take",
     "audio_features": [
         {
             "danceability": 0.656,
@@ -74,10 +72,9 @@
             "time_signature": 4
         }
     ]
-}
-
-// Backyard Boy features
+},
 {
+    "track": "Backyard Boy",
     "audio_features": [
         {
             "danceability": 0.817,
@@ -100,10 +97,9 @@
             "time_signature": 4
         }
     ]
-}
-
-// I GUESS I'M IN LOVE features
+},
 {
+    "track": "I GUESS I'M IN LOVE",
     "audio_features": [
         {
             "danceability": 0.422,
@@ -126,4 +122,4 @@
             "time_signature": 4
         }
     ]
-}
+}]
