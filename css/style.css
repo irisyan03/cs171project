@@ -105,3 +105,11 @@ h2 {
 .btn-primary{
     background-color: var(--main-green);
 }
+
+.record-inner {
+    fill: var(--accent-green)
+}
+
+.record-outer {
+    fill: var(--black);
+}

@@ -16,6 +16,7 @@ let promises = [
     d3.json("data/IY_data_cleaned.json"),
     d3.json("IY_top_stats.json"),
     d3.json("general_top_stats.json"),
+    d3.json("IY_data/IY_top_songs_attributes.json"),
     d3.csv("decade_data.csv")
 ];
 
@@ -42,6 +43,8 @@ function initMainPage(dataArray) {
     dataCardPersonal = new DataCard('personal-card',dataArray[1],1);
     dataCardAggregate = new DataCard('aggregate-card',dataArray[2],0);
 
-    bubbleChart = new BubbleChart('bubbleChartDiv', dataArray[3]);
+    bubbleChart = new BubbleChart('bubbleChartDiv', dataArray[4]);
+    // initiate records
+    let recordVis = new Record('recordVis', dataArray[3][0], 0);
 }
 
