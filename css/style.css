@@ -137,3 +137,41 @@ h2 {
     font-size: 16px;
 }
 
+main .menu{
+    margin-bottom: 20px;
+    margin-top: 20px;
+    text-align:center}
+
+main .menu .button{
+    -webkit-transition: all 0.3s ease;   transition: all 0.3s ease;
+    cursor: pointer;
+    padding: 15px;
+    color: #fff;
+    margin-right: 10px;
+    margin-left: 10px;
+    background-color: #000;
+    margin-bottom: 20px
+}
+main .menu .button.selected{
+    background-color: var(--accent-green);;
+    color: #000
+}
+
+@media (min-width: 650px) {
+    main .menu .button:hover {
+        background-color: var(--accent-green);;
+        color: #000
+    }
+}
+
+@media (max-width: 650px) {
+    main .menu .button{
+        display: block;
+    }
+}
+
+select {
+    display: block;
+    margin: auto;
+
+}

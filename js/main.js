@@ -49,3 +49,10 @@ function initMainPage(dataArray) {
     }
 }
 
+let selected =  document.getElementById('categorySelector').value;
+
+function categoryChange() {
+    selected = document.getElementById("categorySelector").value;
+    bubbleChart.wrangleData(); // maybe you need to change this slightly depending on the name of your MapVis instance
+}
+

@@ -22,6 +22,10 @@
 <div class="container-fluid" >
 	<!-- creative vis header -->
 	<div class="section">
+		<div class="row" style="padding-top: 5vh; padding-bottom: 1vh">
+			<h1 class="title">Seeing Sound</h1>
+			<h1 class="subtitle">Visualizing Spotify Statistics</h1>
+		</div>
 		<h2 class="text-center">Your Top Tracks Visualized</h2>
 		<div class="recordContainer" style="height: 30vh">
 			<div class="recordBox" id="recordVis1" ></div>
@@ -29,10 +33,6 @@
 			<div class="recordBox" id="recordVis3"></div>
 			<div class="recordBox" id="recordVis4"></div>
 			<div class="recordBox" id="recordVis5"></div>
-		</div>
-		<div class="row" style="padding-top: 5vh; padding-bottom: 1vh">
-			<h1 class="title">Seeing Sound</h1>
-			<h1 class="subtitle">Visualizing Spotify Statistics</h1>
 		</div>
 	</div>
 
@@ -47,6 +47,16 @@
 					 class="row"
 					 style="height: 71vh; width: 100%;">
 				</div>
+				<main >
+					<select id='categorySelector' class="custom-select align-self-center menu" style="width: 50%" onchange="categoryChange()">
+						<option value="1960" class="button" selected>1960s</option>
+						<option value="1970" class="button">1970s</option>
+						<option value="1980" class="button">1980s</option>
+						<option value="1990" class="button">1990s</option>
+						<option value="2000" class="button">2000s</option>
+						<option value="2010" class="button">2010s</option>
+					</select>
+				</main>
 			</div>
 		</div>
 	</div>
