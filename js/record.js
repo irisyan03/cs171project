@@ -48,7 +48,7 @@ class Record {
         let vis = this;
 
         console.log("record", vis.trackData);
-        vis.tempo = vis.trackData.audio_features[0].tempo*2
+        vis.tempo = vis.trackData.audio_features[0].tempo*3
         vis.energy = vis.trackData.audio_features[0].energy
         vis.danceability = vis.trackData.audio_features[0].danceability
         vis.track_href = vis.trackData.audio_features[0].track_href
@@ -125,14 +125,14 @@ class Record {
 
     animate(circle, r, tempo) {
         circle.transition()
-            .duration(tempo*2)
+            .duration(tempo)
             .attr('r', r)
             .on('end', () => this.animateOut(circle, r*2, tempo))
     }
 
     animateOut(circle, r, tempo) {
         circle.transition()
-            .duration(tempo*2)
+            .duration(tempo)
             .attr('r', r)
             .on('end', () => this.animate(circle, r/2, tempo))
     }

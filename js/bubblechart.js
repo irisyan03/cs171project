@@ -66,9 +66,10 @@ class BubbleChart {
     }
 
     scaler(val, ind, scale, data){
-        console.log(val)
         scale.domain([data[ind]["min"], data[ind]["max"]]);
-        console.log(scale(val));
+
+        // console.log(scale(val));
+
         return scale(val);
     }
 

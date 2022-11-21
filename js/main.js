@@ -5,11 +5,9 @@
 // init global variables, switches, helper functions
 let playistLineChart;
 let bubbleChart;
+let stackedBarChart;
 
-function updateAllVisualizations(){
-    stackedBarChart.updateVis()
-    bubbleChart.updateVis()
-}
+
 
 // load data using promises
 let promises = [
@@ -36,7 +34,7 @@ function initMainPage(dataArray) {
 
     // instantiate stacked bar chart
     let selectedYear = document.getElementById('dateSlider').value;
-    let stackedBarChart = new StackedBarChart('stackedBarChartDiv', dataArray[0]);
+    stackedBarChart = new StackedBarChart('stackedBarChartDiv', dataArray[0]);
 
     // instantiate data cards
     let dataCardPersonal = new DataCard('personal-card',dataArray[1],1);
@@ -56,3 +54,22 @@ function categoryChange() {
     bubbleChart.wrangleData(); // maybe you need to change this slightly depending on the name of your MapVis instance
 }
 
+function updateAllVisualizations(){
+    stackedBarChart.wrangleData();
+    bubbleChart.updateVis()
+}
+
+function downloadCard(type){
+    let download = document.createElement('a');
+    download.href = "data/"+ type + ".png";
+    download.download = "download" + type + ".png";
+    download.click()
+}
+
+function downloadPersonalCard(){
+    downloadCard("PersonalCard")
+}
+
+function downloadAggregateCard(){
+    downloadCard("AggregateCard")
+}

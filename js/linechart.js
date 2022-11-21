@@ -21,7 +21,7 @@ class LineChart {
 
         vis.margin = {top: 20, right: 20, bottom: 20, left: 40};
         vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
-        vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height - vis.margin.top - vis.margin.bottom;
+        vis.height = 500 - vis.margin.top - vis.margin.bottom;
 
         // init drawing area
         vis.svg = d3.select("#" + vis.parentElement).append("svg")
@@ -53,15 +53,59 @@ class LineChart {
             .scale(vis.yScale);
 
         vis.svg.append("g")
-            .attr("class", "x-axis axis");
+            .attr("class", "x-axis axis")
+            .attr("transform", "translate(0," + (vis.height - vis.margin.top) + ")");
 
         vis.svg.append("g")
             .attr("class", "y-axis axis");
+
+        vis.linePath = vis.svg.append("path")
+            .attr("fill", "none")
+            .attr("class", "line")
+            .attr("stroke-width", 1.5);
+
+        vis.line = d3.line()
+            .x(function(d) { return vis.xScale(d.DATE) })
+            .y(function(d) { return vis.yScale(d.NUM_TRACKS_ADDED) })
 
         // append tooltip
         vis.tooltip = d3.select("body").append('div')
             .attr('class', "tooltip")
             .attr('id', 'lineTooltip')
+
+        // Initialize brushing component
+        vis.currentBrushRegion = null;
+        vis.brush = d3.brushX()
+            .extent([[0,0],[vis.width, vis.height]])
+            .on("brush", function(event){
+                // User just selected a specific region
+                vis.currentBrushRegion = event.selection;
+                vis.currentBrushRegion = vis.currentBrushRegion.map(vis.xScale.invert);
+            });
+
+        // Append brush component here
+        vis.brushGroup = vis.svg.append("g")
+            .call(vis.brush);
+
+        // Add zoom component
+        vis.xOrig = vis.xScale; // save original scale
+
+        vis.zoomFunction = function(event) {
+            vis.xScale = event.transform.rescaleX(vis.xOrig);
+            if (vis.currentBrushRegion) {
+                vis.brushGroup.call(vis.brush.move, vis.currentBrushRegion.map(vis.xScale));
+            }
+            vis.updateVis();
+        } // function that is being called when user zooms
+
+        vis.zoom = d3.zoom()
+            .on("zoom", vis.zoomFunction)
+            .scaleExtent([1,20]);
+
+        // disable mousedown and drag in zoom, when you activate zoom (by .call)
+        vis.brushGroup.call(vis.zoom)
+            .on("mousedown.zoom", null)
+            .on("touchstart.zoom", null);
 
         this.wrangleData();
     }
@@ -86,7 +130,7 @@ class LineChart {
         let last = vis.dateAddedArray[0]
         let count = 1
         for (let i = 1; i < vis.dateAddedArray.length; i++) {
-            if (vis.dateAddedArray[i] - last != 0) {
+            if (vis.dateAddedArray[i] - last !== 0) {
                 vis.dateCount.push({DATE: last, NUM_TRACKS_ADDED: count})
                 last = vis.dateAddedArray[i]
                 count = 1
@@ -94,6 +138,14 @@ class LineChart {
                 count++;
             }
         }
+
+        let maxY = d3.max(vis.dateCount, d => d.NUM_TRACKS_ADDED);
+        let minY = d3.min(vis.dateCount, d => d.NUM_TRACKS_ADDED);
+        vis.yScale.domain([minY, maxY]);
+
+        let minDate = vis.dateCount[0].DATE;
+        let maxDate = vis.dateCount[vis.dateCount.length-1].DATE;
+        vis.xScale.domain([minDate, maxDate]);
 
         console.log(vis.dateCount);
 
@@ -104,31 +156,18 @@ class LineChart {
     updateVis(){
         let vis = this;
 
-        // draw / update X-AXIS
-        let minDate = vis.dateCount[0].DATE;
-        let maxDate = vis.dateCount[vis.dateCount.length-1].DATE;
-        vis.xScale.domain([minDate, maxDate]);
-        vis.svg.select(".x-axis")
-            .attr("transform", "translate(0," + (vis.height - vis.margin.top) + ")")
-            .call(vis.xAxis);
+        // Call brush component here
+        vis.brushGroup.call(vis.brush);
 
-        // update y-axis domain
-        let maxY = d3.max(vis.dateCount, d => d.NUM_TRACKS_ADDED);
-        let minY = d3.min(vis.dateCount, d => d.NUM_TRACKS_ADDED);
-        vis.yScale.domain([minY, maxY]);
-        vis.svg.select(".y-axis")
-            .call(vis.yAxis);
-
-        // Add the line
-        vis.svg.append("path")
+        vis.linePath
             .datum(vis.dateCount)
-            .attr("fill", "none")
-            .attr("class", "line")
-            .attr("stroke-width", 1.5)
-            .attr("d", d3.line()
-                .x(function(d) { return vis.xScale(d.DATE) })
-                .y(function(d) { return vis.yScale(d.NUM_TRACKS_ADDED) })
-            )
+            .attr("d", vis.line)
+            .attr("clip-path", "url(#clip)");
+
+        vis.brushGroup
+            .datum(vis.dateCount)
+            .attr("d", vis.line)
+            .attr("clip-path", "url(#clip)");
 
         // draw points
         let circles = vis.svg.selectAll("circle")
@@ -170,5 +209,10 @@ class LineChart {
                     .style("top", 0)
                     .html(``);
             });
+
+        // Call axis functions with the new domain
+        vis.svg.select(".x-axis").call(vis.xAxis);
+        vis.svg.select(".y-axis").call(vis.yAxis);
+
     }
 }

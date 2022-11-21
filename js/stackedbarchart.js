@@ -61,11 +61,21 @@ class StackedBarChart {
         // color palette = one color per subgroup
         vis.color = d3.scaleLinear().range(["#758BFD", "#0CCE6B"])
 
+        // date
+        vis.date = vis.svg.append("text")
+            .attr("id", "slider-date")
+            .attr("x", 10)
+            .attr("y", 10)
+            .attr("font-size",10)
+            .attr("color", "black");
+
         this.wrangleData();
     }
 
     wrangleData(){
         let vis = this;
+
+        vis.playlistArray = [];
 
         // pull playlists added from userData
         vis.userData.forEach((playlist) => {
@@ -79,10 +89,11 @@ class StackedBarChart {
 
         // filter data
         let slider = document.getElementById("dateSlider").value;
-        let DATE = vis.xScale(slider);
-        console.log(DATE)
+        vis.DATE = vis.xScale(slider);
+        console.log(vis.DATE)
+
         vis.playlistArray = vis.playlistArray.filter(function(a) {
-            return a.DATE_MODIFIED <= DATE;
+            return a.DATE_MODIFIED <= vis.DATE;
         });
 
         // sort data
@@ -99,17 +110,19 @@ class StackedBarChart {
         console.log(vis.playlistArray);
 
         vis.updateVis()
-
     }
 
     updateVis(){
         let vis = this;
 
         // update y-axis domain
-        let maxY = d3.sum(vis.playlistArray, d => d.NUM_TRACKS);
-        vis.yScale.domain([0, maxY]);
+        vis.maxY = d3.sum(vis.playlistArray, d => d.NUM_TRACKS);
+        vis.yScale.domain([0, vis.maxY]);
         vis.svg.select(".y-axis")
             .call(vis.yAxis);
+
+        vis.yScaleBar = d3.scaleLinear()
+            .range([0, vis.maxY]);
 
         vis.color.domain([d3.min(vis.playlistArray, d => d.NUM_TRACKS), d3.max(vis.playlistArray, d => d.NUM_TRACKS)])
 
@@ -118,38 +131,42 @@ class StackedBarChart {
             // enter a second time = loop subgroup per subgroup to add all rectangles
             .data(vis.playlistArray)
 
-        bars.exit().remove();
 
         bars.enter()
             .append("rect")
-                .style("fill", function(d) {return vis.color(d.NUM_TRACKS)})
-                .attr("class", "stacked-bar")
-                .attr("x", 20 )
-                .attr("y", function(d) { return vis.height - vis.yScale(d.Y); })
-                .attr("height", function(d) { return vis.height - vis.margin.bottom - vis.yScale(d.NUM_TRACKS); })
-                .attr("width", 150)
-                .on('mouseover', function(event, d){
-                    d3.select(this)
-                        .style("opacity", 0.5)
-                        .style("cursor", "pointer")
-                    vis.tooltip
-                        .style("opacity", 1)
-                        .style("left", event.pageX + 20 + "px")
-                        .style("top", event.pageY + "px")
-                        .html(`
+            .style("fill", function(d) {return vis.color(d.NUM_TRACKS)})
+            .attr("class", "stacked-bar")
+            .attr("x", 20 )
+            .attr("y", function(d) { return vis.height - vis.yScale(d.Y); })
+            .attr("height", function(d) { return vis.yScaleBar(d.NUM_TRACKS); })
+            .attr("width", 150)
+            .on('mouseover', function(event, d){
+                d3.select(this)
+                    .style("opacity", 0.5)
+                    .style("cursor", "pointer")
+                vis.tooltip
+                    .style("opacity", 1)
+                    .style("left", event.pageX + 20 + "px")
+                    .style("top", event.pageY + "px")
+                    .html(`
                          <div class="tooltip-background">
                              <h3>${d.NAME}<h3>
                              <h3>${d.NUM_TRACKS} tracks<h3>                      
                          </div>`);
-                })
-                .on('mouseout', function(event, d){
-                    d3.select(this)
-                        .style("opacity", 1)
-                    vis.tooltip
-                        .style("opacity", 0)
-                        .style("left", 0)
-                        .style("top", 0)
-                        .html(``);
-                });
+            })
+            .on('mouseout', function(event, d){
+                d3.select(this)
+                    .style("opacity", 1)
+                vis.tooltip
+                    .style("opacity", 0)
+                    .style("left", 0)
+                    .style("top", 0)
+                    .html(``);
+            });
+
+        bars.exit().remove();
+
+        // update selected date
+        vis.date.text(vis.DATE)
     }
 }
