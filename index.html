@@ -20,12 +20,19 @@
 		 WHEN SUBMITTING, WE ALWAYS EXPECT CLEAR SEPARATION OF HTML, CSS, AND JS INTO THE PROPER FILES -->
 	<body style="padding: 5vh">
 	<div class="container-fluid" >
-		<div class="row justify-content-center" style="height: 12vh;">
-			<div class="align-self-center">
-				<h1 class="title">Seeing Sound - Visualizing Spotify Statistics</h1>
+
+		<!-- creative vis header -->
+		<div class="section">
+			<div class="recordContainer" style="height: 30vh">
+				<div class="recordBox" id="recordVis1" ></div>
+				<div class="recordBox" id="recordVis2"></div>
+				<div class="recordBox" id="recordVis3"></div>
+				<div class="recordBox" id="recordVis4"></div>
+				<div class="recordBox" id="recordVis5"></div>
 			</div>
-			<div class="col-4 align-self-center">
-				<div id="slider" onchange="categoryChange()"></div>
+			<div class="row" style="padding-top: 5vh; padding-bottom: 1vh">
+				<h1 class="title">Seeing Sound</h1>
+				<h1 class="subtitle">Visualizing Spotify Statistics</h1>
 			</div>
 		</div>
 
@@ -177,16 +184,6 @@
 				</div>
 			</div>
 
-		<div class="row"
-			 style="height: 80vh; padding-top: 0; padding-left: 1vh; padding-right: 1vh; padding-bottom: 1vh">
-			<div class="col">
-				<div id="recordVis"
-					 class="row"
-					 style="height: 71vh; width: 100%;">
-				</div>
-			</div>
-		</div>
-
 	</div>
 
 
@@ -208,7 +205,6 @@
 	<script src="js/linechart.js"></script>
 	<script src="js/stackedbarchart.js"></script>
 	<script src="js/datacard.js"></script>
-	<script src="js/recordVis.js"></script>
 	<script src="js/record.js"></script>
 	</body>
 </html>

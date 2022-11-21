@@ -33,14 +33,15 @@ function initMainPage(dataArray) {
 
     // instantiate stacked bar chart
     let selectedYear = document.getElementById('dateSlider').value;
-    console.log(selectedYear);
-    stackedBarChart = new StackedBarChart('stackedBarChartDiv', dataArray[0]);
+    let stackedBarChart = new StackedBarChart('stackedBarChartDiv', dataArray[0]);
 
     // instantiate data cards
-    dataCardPersonal = new DataCard('personal-card',dataArray[1],1);
-    dataCardAggregate = new DataCard('aggregate-card',dataArray[2],0);
+    let dataCardPersonal = new DataCard('personal-card',dataArray[1],1);
+    let dataCardAggregate = new DataCard('aggregate-card',dataArray[2],0);
 
     // initiate records
-    let recordVis = new Record('recordVis', dataArray[3][0], 0);
+    for (let i = 0; i < 5; i++) {
+        new Record(`recordVis${i+1}`, dataArray[3][i], i);
+    }
 }
 

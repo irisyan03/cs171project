@@ -13,8 +13,9 @@
     color: var(--black);
 }
 
+/* MAIN */
 .title {
-    font-size: 36px !important;
+    font-size: 42px !important;
     color: var(--main-green);
 }
 
@@ -23,6 +24,7 @@
     color: var(--accent-green);
 }
 
+/* LINE-CHART */
 .line {
     stroke: var(--main-green);
     stroke-width: 2px;
@@ -62,6 +64,7 @@ h2 {
     padding-top: 36px;
 }
 
+/* STACKED-BAR */
 .stacked-bar {
     stroke: var(--white);
     stroke-width: 2px;
@@ -106,10 +109,31 @@ h2 {
     background-color: var(--main-green);
 }
 
-.record-inner {
-    fill: var(--accent-green)
+/* RECORD */
+.recordContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    height: 300px;
 }
 
-.record-outer {
-    fill: var(--black);
+.recordBox {
+    background-color: gray !important;
+    width: 100%;
+    margin:10px;
 }
+
+.recordTextBox {
+    fill: #6c757d;
+}
+
+.recordTextBoxTitle {
+    font-size: 24px;
+    fill: var(--accent-green);
+}
+
+.recordTextBoxSubtitle {
+    font-size: 16px;
+}
+
