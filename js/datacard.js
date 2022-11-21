@@ -22,3 +22,5 @@ class DataCard {
         document.getElementsByClassName('track_3')[vis.num].innerHTML = vis.songData[2];
     }
 }
+
+

@@ -64,7 +64,8 @@ class BubbleChart {
     }
 
     scaler(val, ind, scale, data){
-        console.log(val)
+        // console.log(val)
+
         // data.forEach(function(d) {
         //     if (d["property"] === attr) {
         //         console.log("found")
@@ -72,7 +73,9 @@ class BubbleChart {
         //     }
         // })
         scale.domain([data[ind]["min"], data[ind]["max"]]);
-        console.log(scale(val));
+
+        // console.log(scale(val));
+
         return scale(val);
     }
 
