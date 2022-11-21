@@ -21,7 +21,7 @@ class Record {
         vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height - vis.margin.top - vis.margin.bottom;
 
         vis.AREA = (vis.width - vis.margin.left - vis.margin.right)
-        vis.R = vis.AREA/4;
+        vis.R = vis.AREA/6;
         vis.LINE_WIDTH = 2;
         vis.X = vis.AREA/2;
 
@@ -51,6 +51,7 @@ class Record {
         vis.tempo = vis.trackData.audio_features[0].tempo*2
         vis.energy = vis.trackData.audio_features[0].energy
         vis.danceability = vis.trackData.audio_features[0].danceability
+        vis.track_href = vis.trackData.audio_features[0].track_href
 
         // make the max radii relative to the energy metric
         vis.R = vis.R * vis.trackData.audio_features[0].energy
@@ -81,6 +82,11 @@ class Record {
                     }
                     return "white";
                 });
+
+            circle
+                .append("a")
+                .attr("href", vis.trackData.audio)
+
             this.animate(circle, vis.radii[i], vis.tempo)
         }
 
