@@ -13,7 +13,10 @@ class BubbleChart {
     initVis(){
         let vis = this;
 
-        vis.margin = {top: 20, right: 20, bottom: 20, left: 40};
+        console.log("user data")
+        console.log(vis.userData)
+
+        vis.margin = {top: -30, right: 20, bottom: 50, left: 40};
         vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
         vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height - vis.margin.top - vis.margin.bottom;
 
@@ -23,14 +26,6 @@ class BubbleChart {
             .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
             .append('g')
             .attr('transform', `translate (${vis.margin.left}, ${vis.margin.top})`);
-
-        // add title
-        vis.svg.append('g')
-            .append('text')
-            .text('Variation in Musical Attributes Over Time')
-            .attr('class', 'chart-title')
-            .attr('transform', `translate(${vis.width / 2}, 10)`)
-            .attr('text-anchor', 'middle');
 
         // Scales and axes
         vis.scale = d3.scaleLinear()
@@ -67,9 +62,6 @@ class BubbleChart {
 
     scaler(val, ind, scale, data){
         scale.domain([data[ind]["min"], data[ind]["max"]]);
-
-        // console.log(scale(val));
-
         return scale(val);
     }
 
@@ -110,7 +102,7 @@ class BubbleChart {
             .attr('class', 'bubble-label')
             // consider abstracting these out/making them more robust
             .attr("x", (d, i) => (i % 3) * vis.width/4 + vis.width/4)
-            .attr("y", (d, i) => 175 + Math.floor(i / 3) * vis.height / 3)
+            .attr("y", (d, i) => vis.height/30 + (1 + Math.floor(i / 3)) * vis.height / 3)
             .style("fill", "black")
             // .attr('transform', `translate(${vis.width/5}, ${vis.height/5})`)
             .attr('text-anchor', 'middle');
@@ -133,7 +125,8 @@ class BubbleChart {
                     .style("top", event.pageY + "px")
                     .html(`
                      <div class="tooltip-background">
-                        <h3>Average ${d["property"]}: ${vis.roundDecimal(d[vis.select])}<h3>                   
+                        <h3>Average ${d["property"]}: ${vis.roundDecimal(d[vis.select])}<h3>           
+                        <h3>${d["property"]} is ${d["description"]}<h3>              
                      </div>`);
             })
             .on('mouseout', function(event, d){

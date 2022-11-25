@@ -32,9 +32,10 @@ function initMainPage(dataArray) {
     // instantiate line chart
     playistLineChart = new LineChart('playlistLineChartDiv', dataArray[0]);
 
-    // instantiate stacked bar chart
-    let selectedYear = document.getElementById('dateSlider').value;
-    stackedBarChart = new StackedBarChart('stackedBarChartDiv', dataArray[0]);
+    // TO DO: REMOVE, REMAINING FROM STACKED BAR
+    // // instantiate stacked bar chart
+    // let selectedYear = document.getElementById('dateSlider').value;
+    // stackedBarChart = new StackedBarChart('stackedBarChartDiv', dataArray[0]);
 
     // instantiate data cards
     let dataCardPersonal = new DataCard('personal-card',dataArray[1],1);

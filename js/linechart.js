@@ -21,7 +21,7 @@ class LineChart {
 
         vis.margin = {top: 20, right: 20, bottom: 20, left: 40};
         vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
-        vis.height = 500 - vis.margin.top - vis.margin.bottom;
+        vis.height = 400 - vis.margin.top - vis.margin.bottom;
 
         // init drawing area
         vis.svg = d3.select("#" + vis.parentElement).append("svg")
@@ -30,13 +30,6 @@ class LineChart {
             .append('g')
             .attr('transform', `translate (${vis.margin.left}, ${vis.margin.top})`);
 
-        // add title
-        vis.svg.append('g')
-            .append('text')
-            .text('Number of Tracks Added to Playlists over Time')
-            .attr('class', 'chart-title')
-            .attr('transform', `translate(${vis.width / 2}, 10)`)
-            .attr('text-anchor', 'middle');
 
         // Scales and axes
         vis.xScale = d3.scaleTime()
@@ -64,6 +57,14 @@ class LineChart {
             .attr("class", "line")
             .attr("stroke-width", 1.5);
 
+        // Define the clipping region
+        vis.clipPath = vis.svg.append("defs")
+            .append("clipPath")
+            .attr("id", "clip")
+            .append("rect")
+            .attr("width", vis.width)
+            .attr("height", vis.height);
+
         vis.line = d3.line()
             .x(function(d) { return vis.xScale(d.DATE) })
             .y(function(d) { return vis.yScale(d.NUM_TRACKS_ADDED) })
@@ -76,7 +77,7 @@ class LineChart {
         // Initialize brushing component
         vis.currentBrushRegion = null;
         vis.brush = d3.brushX()
-            .extent([[0,0],[vis.width, vis.height]])
+            .extent([[0,15],[vis.width, vis.height]])
             .on("brush", function(event){
                 // User just selected a specific region
                 vis.currentBrushRegion = event.selection;

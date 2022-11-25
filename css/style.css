@@ -32,7 +32,12 @@
 
 .chart-title {
     font-size: 24px !important;
-    fill: var(--accent-green);
+    color: var(--accent-green);
+}
+
+.chart-subtitle {
+    font-size: 14px !important;
+    color: var(--black);
 }
 
 .circle {
@@ -137,7 +142,7 @@ h2 {
 }
 
 main .menu{
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     margin-top: 20px;
     text-align:center}
 
@@ -173,4 +178,25 @@ select {
     display: block;
     margin: auto;
 
+}
+
+.card-group {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+th {
+    width: 120px;
+}
+
+td {
+    width:80%;
+    white-space: nowrap;
+}
+
+table {
+    width: 80%;
 }
