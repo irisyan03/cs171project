@@ -13,3 +13,4 @@ We will examine listener and music trends on Spotify using Spotify Research’s 
 
 ## Project Process Book:
 https://docs.google.com/document/d/1PjwiiLB2XYJPOPnJjx-fyO9-cVUHOWfq2ThPgl2WOKE/edit
+Also attached as PDF in this directory!
