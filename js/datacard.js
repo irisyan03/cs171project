@@ -1,11 +1,9 @@
 class DataCard {
 
     // constructor method to initialize data card object
-    constructor(parentElement, userData, num) {
+    constructor(parentElement, inputData, num) {
         this.parentElement = parentElement;
-        this.userData = userData;
-        this.artistData = userData.topArtistsByCount;
-        this.songData = userData.topSongsByCount;
+        this.inputData = inputData;
         this.num = num
 
         this.initTable()
@@ -13,14 +11,21 @@ class DataCard {
 
     initTable() {
         let vis = this;
-        console.log(vis.artistData[0])
-        document.getElementsByClassName('artist_1')[vis.num].innerHTML = vis.artistData[0];
-        document.getElementsByClassName('artist_2')[vis.num].innerHTML = vis.artistData[1];
-        document.getElementsByClassName('artist_3')[vis.num].innerHTML = vis.artistData[2];
-        document.getElementsByClassName('track_1')[vis.num].innerHTML = vis.songData[0];
-        document.getElementsByClassName('track_2')[vis.num].innerHTML = vis.songData[1];
-        document.getElementsByClassName('track_3')[vis.num].innerHTML = vis.songData[2];
+        let artists = ['artist_1','artist_2','artist_3']
+        let tracks = ['track_1','track_2','track_3']
+        let index = selectedPerson;
+        vis.userData = vis.inputData[index]
+        console.log(vis.userData)
+        console.log("artists Data^ for cards" + vis.num)
+        vis.artistData = vis.userData.topArtistsByCount;
+        vis.songData = vis.userData.topSongsByCount;
+
+        for (let i = 0; i < 3; i++) {
+            document.getElementsByClassName(artists[i])[vis.num].innerHTML = vis.artistData[i];
+            document.getElementsByClassName(tracks[i])[vis.num].innerHTML = "<a href=" + vis.userData.topSongsByCount_url[vis.songData[i]] + ">" + vis.songData[i] + "</a>"
+        }
     }
+
 }
 
 

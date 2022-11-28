@@ -1,0 +1,125 @@
+[{
+    "track": "People Watching",
+    "audio_features": [
+        {
+            "danceability": 0.53,
+            "energy": 0.593,
+            "key": 5,
+            "loudness": -7.286,
+            "mode": 1,
+            "speechiness": 0.0545,
+            "acousticness": 0.385,
+            "instrumentalness": 0,
+            "liveness": 0.314,
+            "valence": 0.538,
+            "tempo": 125.723,
+            "type": "audio_features",
+            "id": "4JeOesjcWWlprTAvucDSJX",
+            "uri": "spotify:track:4JeOesjcWWlprTAvucDSJX",
+            "track_href": "https://api.spotify.com/v1/tracks/4JeOesjcWWlprTAvucDSJX",
+            "analysis_url": "https://api.spotify.com/v1/audio-analysis/4JeOesjcWWlprTAvucDSJX",
+            "duration_ms": 158537,
+            "time_signature": 4
+        }
+    ]
+},
+{
+    "track": "For Tonight",
+    "audio_features": [
+        {
+            "danceability": 0.442,
+            "energy": 0.517,
+            "key": 9,
+            "loudness": -7.807,
+            "mode": 1,
+            "speechiness": 0.0548,
+            "acousticness": 0.0699,
+            "instrumentalness": 0,
+            "liveness": 0.114,
+            "valence": 0.2,
+            "tempo": 79.867,
+            "type": "audio_features",
+            "id": "61Emqg95O9zo1GNOcyxq4Y",
+            "uri": "spotify:track:61Emqg95O9zo1GNOcyxq4Y",
+            "track_href": "https://api.spotify.com/v1/tracks/61Emqg95O9zo1GNOcyxq4Y",
+            "analysis_url": "https://api.spotify.com/v1/audio-analysis/61Emqg95O9zo1GNOcyxq4Y",
+            "duration_ms": 193822,
+            "time_signature": 4
+        }
+    ]
+},
+{
+    "track": "SLOW DANCING IN THE DARK",
+    "audio_features": [
+        {
+            "danceability": 0.515,
+            "energy": 0.479,
+            "key": 3,
+            "loudness": -7.458,
+            "mode": 1,
+            "speechiness": 0.0261,
+            "acousticness": 0.544,
+            "instrumentalness": 0.00598,
+            "liveness": 0.191,
+            "valence": 0.284,
+            "tempo": 88.964,
+            "type": "audio_features",
+            "id": "0rKtyWc8bvkriBthvHKY8d",
+            "uri": "spotify:track:0rKtyWc8bvkriBthvHKY8d",
+            "track_href": "https://api.spotify.com/v1/tracks/0rKtyWc8bvkriBthvHKY8d",
+            "analysis_url": "https://api.spotify.com/v1/audio-analysis/0rKtyWc8bvkriBthvHKY8d",
+            "duration_ms": 209274,
+            "time_signature": 4
+        }
+    ]
+},
+{
+    "track": "i don't want to watch the world end with someone else",
+    "audio_features": [
+        {
+            "danceability": 0.535,
+            "energy": 0.359,
+            "key": 2,
+            "loudness": -9.343,
+            "mode": 1,
+            "speechiness": 0.0607,
+            "acousticness": 0.771,
+            "instrumentalness": 0,
+            "liveness": 0.111,
+            "valence": 0.488,
+            "tempo": 154.163,
+            "type": "audio_features",
+            "id": "58qX77t2VWMWcycsh9zKLc",
+            "uri": "spotify:track:58qX77t2VWMWcycsh9zKLc",
+            "track_href": "https://api.spotify.com/v1/tracks/58qX77t2VWMWcycsh9zKLc",
+            "analysis_url": "https://api.spotify.com/v1/audio-analysis/58qX77t2VWMWcycsh9zKLc",
+            "duration_ms": 184505,
+            "time_signature": 4
+        }
+    ]
+},
+{
+    "track": "Running Thru 3AM",
+    "audio_features": [
+        {
+            "danceability": 0.677,
+            "energy": 0.388,
+            "key": 8,
+            "loudness": -6.697,
+            "mode": 1,
+            "speechiness": 0.0406,
+            "acousticness": 0.731,
+            "instrumentalness": 0,
+            "liveness": 0.154,
+            "valence": 0.419,
+            "tempo": 119.069,
+            "type": "audio_features",
+            "id": "3cHkjS45Xiduc6DcXtXmAo",
+            "uri": "spotify:track:3cHkjS45Xiduc6DcXtXmAo",
+            "track_href": "https://api.spotify.com/v1/tracks/3cHkjS45Xiduc6DcXtXmAo",
+            "analysis_url": "https://api.spotify.com/v1/audio-analysis/3cHkjS45Xiduc6DcXtXmAo",
+            "duration_ms": 209747,
+            "time_signature": 4
+        }
+    ]
+}]

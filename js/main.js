@@ -3,23 +3,52 @@
 * * * * * * * * * * * * * */
 
 // init global variables, switches, helper functions
-let playistLineChart;
+let playlistLineChart;
 let bubbleChart;
 let barChart;
+let promises;
+let dataCardPersonal;
+let dataCardAggregate;
+let recordList = [];
 
+let selectedPerson =  document.getElementById('personSelector').value;
+console.log("initial value" + selectedPerson);
 
+function personChange() {
+    selectedPerson = document.getElementById("personSelector").value;
+    console.log(selectedPerson)
+    playlistLineChart.wrangleData();
+    dataCardPersonal.initTable();
+    for (let i = 0; i < 5; i++) {
+        recordList[i].wrangleData();
+    }
+    // wrangle data for last barchart vis also
+}
 
 // load data using promises
-let promises = [
-    d3.json("data/IY_data_cleaned.json"),
-    d3.json("IY_top_stats.json"),
-    d3.json("general_top_stats.json"),
-    d3.json("IY_data/IY_top_songs_attributes.json"),
-    d3.csv("decade_data.csv")
+promises = [
+    d3.json("data/IY_data/IY_data_cleaned.json"),
+    d3.json("data/IY_data/IY_top_stats.json"),
+    d3.json("data/IY_data/IY_top_songs_attributes.json"),
+    d3.json("data/LW_data/LW_data_cleaned.json"),
+    d3.json("data/LW_data/LW_top_stats.json"),
+    d3.json("data/LW_data/LW_top_songs_attributes.json"),
+    d3.json("data/CL_data/CL_data_cleaned.json"),
+    d3.json("data/CL_data/CL_top_stats.json"),
+    d3.json("data/CL_data/CL_top_songs_attributes.json"),
+    d3.json("data/aggregate_data/general_top_stats.json"),
+    d3.csv("data/aggregate_data/decade_data.csv")
+
+    // d3.json("data/CL_data/CL_data_cleaned.json"),
+    // d3.json("data/CL_data/CL_top_stats.json"),
+    // d3.json("data/aggregate_data/general_top_stats.json"),
+    // d3.json("data/CL_data/CL_top_songs_attributes.json"),
+    // d3.csv("data/aggregate_data/decade_data.csv")
 ];
 
 Promise.all(promises)
-    .then( function(data){ initMainPage(data) })
+    .then( function(data){
+        initMainPage(data) })
     .catch( function (err){console.log(err)} );
 
 // initMainPage
@@ -30,20 +59,24 @@ function initMainPage(dataArray) {
     console.log(dataArray);
 
     // instantiate line chart
-    playistLineChart = new LineChart('playlistLineChartDiv', dataArray[0]);
+    playlistLineChart = new LineChart('playlistLineChartDiv', [dataArray[0], dataArray[3], dataArray[6]]);
 
     // instantiate stacked bar chart
     // let selectedYear = document.getElementById('dateSlider').value;
     barChart = new BarChart('barChartDiv', dataArray[0]);
 
     // instantiate data cards
-    let dataCardPersonal = new DataCard('personal-card',dataArray[1],1);
-    let dataCardAggregate = new DataCard('aggregate-card',dataArray[2],0);
+    dataCardPersonal = new DataCard('personal-card', [dataArray[1], dataArray[4], dataArray[7]],1);
+    dataCardAggregate = new DataCard('aggregate-card',[dataArray[9], dataArray[9], dataArray[9]],0);
 
-    bubbleChart = new BubbleChart('bubbleChartDiv', dataArray[4]);
+    bubbleChart = new BubbleChart('bubbleChartDiv', dataArray[10]);
     // initiate records
+
     for (let i = 0; i < 5; i++) {
-        new Record(`recordVis${i+1}`, dataArray[3][i], i);
+        let r= new Record(`recordVis${i+1}`, [dataArray[2][i], dataArray[5][i], dataArray[8][i]], i);
+        recordList.push(r);
+        console.log("record list");
+        console.log(recordList);
     }
 }
 

@@ -5,9 +5,9 @@
 
 class Record {
 
-    constructor(parentElement, trackData, index) {
+    constructor(parentElement, inputTrackData, index) {
         this.parentElement = parentElement;
-        this.trackData = trackData;
+        this.inputTrackData = inputTrackData;
         this.index = index;
 
         this.initVis();
@@ -47,11 +47,15 @@ class Record {
     wrangleData(){
         let vis = this;
 
+        let index = selectedPerson;
+        vis.trackData = vis.inputTrackData[index]
+
         console.log("record", vis.trackData);
         vis.tempo = vis.trackData.audio_features[0].tempo*3
         vis.energy = vis.trackData.audio_features[0].energy
         vis.danceability = vis.trackData.audio_features[0].danceability
-        vis.track_href = vis.trackData.audio_features[0].track_href
+        let uri = vis.trackData.audio_features[0].uri
+        vis.track_url = "https://open.spotify.com/track/" + uri.slice(14)
 
         // make the max radii relative to the energy metric
         vis.R = vis.R * vis.trackData.audio_features[0].energy
@@ -85,7 +89,8 @@ class Record {
 
             circle
                 .append("a")
-                .attr("href", vis.trackData.audio)
+ /*               .attr("href", vis.trackData.audio)*/
+                .attr("href", vis.track_url)
 
             this.animate(circle, vis.radii[i], vis.tempo)
         }
@@ -95,11 +100,13 @@ class Record {
 
         let title = textBox
             .append("text")
+            .append("a")
             .text(vis.trackData.track)
             .attr("class", "recordTextBoxTitle")
+            .attr("href", vis.track_url)
             .attr("x", vis.X)
             .attr("y", vis.height*2/3)
-            .attr('text-anchor', 'middle');
+            // .attr('text-anchor', 'middle');
 
         let tempo = textBox.append("text")
             .text("Tempo: " + Math.floor(vis.tempo) + " bpm")
@@ -121,6 +128,12 @@ class Record {
             .attr("x", vis.X)
             .attr("y", vis.height*2/3 + 3*32)
             .attr('text-anchor', 'middle');
+
+        // let link = textBox.append("text")
+        //     .append("a")
+        //     .text("Listen on Spotify")
+        //     .attr("class", "recordLinkBoxLink")
+        //     .attr("href", vis.track_url)
     }
 
     animate(circle, r, tempo) {
@@ -150,5 +163,4 @@ class Record {
             .style('opacity', 1)
             .on('end', () => this.animateOp(circle, danceability))
     }
-
 }

@@ -1,31 +1,40 @@
 {
     "timeListened": 3869307102,
-    "topArtists": [
-        "Bruno Mars",
+    "topArtistsByCount": [
         "Taylor Swift",
-        "iann dior",
+        "Bruno Mars",
         "James Arthur",
+        "iann dior",
         "Lauv"
     ],
-    "topSongs": [
-        "Skyfall",
-        "On The Altar",
+    "topSongsByCount": [
         "For Tonight",
         "double take",
+        "Backyard Boy",
+        "I GUESS I'M IN LOVE",
         "@ my worst"
     ],
-    "topArtists_time": {
-        "Bruno Mars": 76428832,
-        "Taylor Swift": 87050676,
-        "iann dior": 100678891,
-        "James Arthur": 102938138,
-        "Lauv": 140696165
+    "topArtistsByCount_count": {
+        "Taylor Swift": 528,
+        "Bruno Mars": 621,
+        "James Arthur": 641,
+        "iann dior": 796,
+        "Lauv": 1019
     },
-    "topSongs_time": {
-        "Skyfall": 20758957,
-        "On The Altar": 20874269,
-        "For Tonight": 21345542,
-        "double take": 22285934,
-        "@ my worst": 28382711
-    }
+    "topSongsByCount_count": {
+        "For Tonight": 153,
+        "double take": 156,
+        "Backyard Boy": 164,
+        "I GUESS I'M IN LOVE": 173,
+        "@ my worst": 198
+    },
+    "topSongsByCount_url": {
+        "For Tonight": "https://open.spotify.com/track/61Emqg95O9zo1GNOcyxq4Y",
+        "double take": "https://open.spotify.com/track/0QzuaeCEEOV40Pn7IvKEny",
+        "Backyard Boy": "https://open.spotify.com/track/0QpOqKz66ZxHNqj2PPHiFF",
+        "I GUESS I'M IN LOVE": "https://open.spotify.com/track/1is8gU4RVcN4J8xItxWoOY",
+        "@ my worst": "https://open.spotify.com/track/2dZBB7ME8tWRVhiOINsauW"
+    },
+    "numPlaylists": 31,
+    "avgLengthPlaylist": 54.064516129032256
 }

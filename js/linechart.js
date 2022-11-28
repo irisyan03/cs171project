@@ -5,9 +5,9 @@
 
 class LineChart {
 
-    constructor(parentElement, userData) {
+    constructor(parentElement, inputData) {
         this.parentElement = parentElement;
-        this.userData = userData;
+        this.inputData = inputData;
         this.dateAddedArray = [];
         this.dateCount = [];
         this.formatDate = d3.timeFormat("%b %d %Y")
@@ -82,6 +82,12 @@ class LineChart {
                 // User just selected a specific region
                 vis.currentBrushRegion = event.selection;
                 vis.currentBrushRegion = vis.currentBrushRegion.map(vis.xScale.invert);
+                // console.log(event.selection)
+                // console.log(vis.currentBrushRegion)
+                let selectionStart = vis.currentBrushRegion[0]
+                let selectionEnd = vis.currentBrushRegion[1]
+                d3.select("#time-period-min").text((String(selectionStart).slice(4,15)));
+                d3.select("#time-period-max").text((String(selectionEnd).slice(4,15)));
             });
 
         // Append brush component here
@@ -113,6 +119,9 @@ class LineChart {
 
     wrangleData(){
         let vis = this;
+
+        let index = selectedPerson
+        vis.userData = vis.inputData[index]
 
         // pull tracks added from userData
         vis.userData = vis.userData.forEach((playlist) => {
@@ -148,6 +157,9 @@ class LineChart {
         let maxDate = vis.dateCount[vis.dateCount.length-1].DATE;
         vis.xScale.domain([minDate, maxDate]);
 
+        d3.select("#time-period-min").text((String(minDate).slice(4,15)));
+        d3.select("#time-period-max").text((String(maxDate).slice(4,15)));
+
         console.log(vis.dateCount);
 
         vis.updateVis()
@@ -161,6 +173,7 @@ class LineChart {
         vis.brushGroup.call(vis.brush);
 
         vis.linePath
+            .join()
             .datum(vis.dateCount)
             .attr("d", vis.line)
             .attr("clip-path", "url(#clip)");
@@ -216,4 +229,5 @@ class LineChart {
         vis.svg.select(".y-axis").call(vis.yAxis);
 
     }
+
 }

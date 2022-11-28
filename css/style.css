@@ -199,3 +199,13 @@ td {
 table {
     width: 80%;
 }
+
+.time-period {
+    display: flex;
+    background-color: white;
+    fill: black;
+}
+
+* {
+    background-color: transparent;
+}

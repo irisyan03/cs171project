@@ -1,0 +1,40 @@
+{
+    "timeListened": 4665824713,
+    "topArtistsByCount": [
+        "The Lumineers",
+        "Harry Styles",
+        "Bad Bunny",
+        "Taylor Swift",
+        "Lizzy McAlpine"
+    ],
+    "topSongsByCount": [
+        "So\u00f1\u00e9 Contigo",
+        "Kilby Girl",
+        "Chiquitita",
+        "Evergreen (You Didn\u2019t Deserve Me At All)",
+        "As It Was"
+    ],
+    "topArtistsByCount_count": {
+        "The Lumineers": 596,
+        "Harry Styles": 628,
+        "Bad Bunny": 633,
+        "Taylor Swift": 694,
+        "Lizzy McAlpine": 941
+    },
+    "topSongsByCount_count": {
+        "So\u00f1\u00e9 Contigo": 124,
+        "Kilby Girl": 132,
+        "Chiquitita": 145,
+        "Evergreen (You Didn\u2019t Deserve Me At All)": 165,
+        "As It Was": 214
+    },
+    "topSongsByCount_url": {
+        "For Tonight": "https://open.spotify.com/track/61Emqg95O9zo1GNOcyxq4Y",
+        "double take": "https://open.spotify.com/track/0QzuaeCEEOV40Pn7IvKEny",
+        "Backyard Boy": "https://open.spotify.com/track/0QpOqKz66ZxHNqj2PPHiFF",
+        "I GUESS I'M IN LOVE": "https://open.spotify.com/track/1is8gU4RVcN4J8xItxWoOY",
+        "@ my worst": "https://open.spotify.com/track/2dZBB7ME8tWRVhiOINsauW"
+    },
+    "numPlaylists": 80,
+    "avgLengthPlaylist": 14.3125
+}

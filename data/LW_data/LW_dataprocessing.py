@@ -9,7 +9,7 @@ class User:
     
 
 # Iris Data Processing
-f = open('IY_data/Playlist1.json')
+f = open('data/LW_data/Playlist1.json')
 
 # List of playlists
 playlists = json.load(f)["playlists"]
@@ -44,15 +44,15 @@ for p in range(len(playlists)):
 
 f.close()
 
-new = open("IY_data_cleaned.json", "w")
+new = open("LW_data_cleaned.json", "w")
 new.write(json.dumps(cleaned_playlist_data, indent = 4))
 new.close()
 
 
 # Concatenate streaming history in chronological order
-f0 = open("IY_data/StreamingHistory0.json", "r")
-f1 = open("IY_data/StreamingHistory1.json", "r")
-f2 = open("IY_data/StreamingHistory2.json", "r")
+f0 = open("data/LW_data/StreamingHistory0.json", "r")
+f1 = open("data/LW_data/StreamingHistory1.json", "r")
+f2 = open("data/LW_data/StreamingHistory2.json", "r")
 history_0 = json.load(f0)
 history_1 = json.load(f1)
 history_2 = json.load(f2)
@@ -90,7 +90,7 @@ for track in merged_history:
     else:
         songs_count[track["trackName"]] = 1
 
-# new = open("IY_top_stats.json", "a")
+# new = open("LW_top_stats.json", "a")
 # Process for top 5 of each, by time
 topArtists_bytime = sorted(artists_time, key = artists_time.get)[-5:]
 topSongs_bytime = sorted(songs_time, key = songs_time.get)[-5:]
@@ -137,7 +137,7 @@ stats = {
     "avgLengthPlaylist": total_songs/len(playlists)
 }
 
-new = open("IY_top_stats.json", "x")
+new = open("LW_top_stats.json", "x")
 new.write(json.dumps(stats, indent = 4))
 new.close()
 

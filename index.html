@@ -28,6 +28,17 @@
 			<h1 class="title">Seeing Sound</h1>
 			<h1 class="subtitle">Visualizing Spotify Statistics</h1>
 		</div>
+		<div class="row" style="padding-top: 5vh; padding-bottom: 1vh">
+			<div class="chart-title text-center">Select Your User</div>
+			<div class="chart-subtitle text-center">Select someone's data to explore and display!</div>
+			<main >
+				<select id='personSelector' class="custom-select align-self-center menu" style="width: 50%" onchange="personChange()">
+					<option value="0" class="button" selected>Iris</option>
+					<option value="1" class="button">Lauren</option>
+					<option value="2" class="button">Cindy</option>
+				</select>
+			</main>
+		</div>
 		<h2>What does your Spotify usage look like now?</h2>
 		<div class="chart-title text-center">Your Top Tracks Visualized</div>
 		<div class="chart-subtitle text-center">Each record's color corresponds to its danceability, the rate of pulsing to its tempo, and size to its energy.</div>
@@ -43,11 +54,18 @@
 	<!-- line chart -->
 	<div class="section">
 		<h2>How has your Spotify usage changed over time?</h2>
+
 		<div class="row"
 			 style="height: 60vh; padding-top: 0; padding-left: 1vh; padding-right: 1vh; padding-bottom: 1vh">
 			<div class="col">
 				<div class="chart-title text-center">Number of Tracks Added to Playlists Over Time</div>
 				<div class="chart-subtitle text-center">This zoomable line graph shows number of added tracks, with a brush region showing the aggregate over that period.</div>
+				<div class="time-period">
+					<h3 id="time-period-min">2012-11-29</h3>
+					<h3> -- </h3>
+					<h3 id = "time-period-max">2013-12-31</h3>
+				</div>
+
 				<div id="playlistLineChartDiv"
 					 class="row"
 					 style="height: 71vh; width: 100%;">
@@ -121,7 +139,7 @@
 								<tbody>
 								<tr>
 									<th >#1</th>
-									<td class="artist_1"></td>
+									<td class="artist_1 link"></td>
 								</tr>
 								<tr>
 									<th>#2</th>
@@ -138,15 +156,15 @@
 								<tbody>
 								<tr>
 									<th>#1</th>
-									<td class="track_1"></td>
+									<td class="track_1 link"></td>
 								</tr>
 								<tr>
 									<th>#2</th>
-									<td class="track_2"></td>
+									<td class="track_2 link"></td>
 								</tr>
 								<tr>
 									<th>#3</th>
-									<td class="track_3"></td>
+									<td class="track_3 link"></td>
 								</tr>
 								</tbody>
 							</table>
@@ -182,15 +200,15 @@
 								<tbody>
 								<tr>
 									<th>#1</th>
-									<td class="track_1"></td>
+									<td class="track_1 link"></td>
 								</tr>
 								<tr>
 									<th>#2</th>
-									<td class="track_2"></td>
+									<td class="track_2 link"></td>
 								</tr>
 								<tr>
 									<th>#3</th>
-									<td class="track_3"></td>
+									<td class="track_3 link"></td>
 								</tr>
 								</tbody>
 							</table>
