@@ -82,6 +82,12 @@ class LineChart {
                 // User just selected a specific region
                 vis.currentBrushRegion = event.selection;
                 vis.currentBrushRegion = vis.currentBrushRegion.map(vis.xScale.invert);
+                // console.log(event.selection)
+                // console.log(vis.currentBrushRegion)
+                let selectionStart = vis.currentBrushRegion[0]
+                let selectionEnd = vis.currentBrushRegion[1]
+                d3.select("#time-period-min").text((String(selectionStart).slice(4,15)));
+                d3.select("#time-period-max").text((String(selectionEnd).slice(4,15)));
             });
 
         // Append brush component here
@@ -150,6 +156,9 @@ class LineChart {
         let minDate = vis.dateCount[0].DATE;
         let maxDate = vis.dateCount[vis.dateCount.length-1].DATE;
         vis.xScale.domain([minDate, maxDate]);
+
+        d3.select("#time-period-min").text((String(minDate).slice(4,15)));
+        d3.select("#time-period-max").text((String(maxDate).slice(4,15)));
 
         console.log(vis.dateCount);
 
@@ -220,4 +229,5 @@ class LineChart {
         vis.svg.select(".y-axis").call(vis.yAxis);
 
     }
+
 }

@@ -200,3 +200,8 @@ td {
 table {
     width: 80%;
 }
+
+.time-period {
+    display: flex;
+
+}
