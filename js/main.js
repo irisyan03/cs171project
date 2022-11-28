@@ -78,6 +78,9 @@ function initMainPage(dataArray) {
         console.log("record list");
         console.log(recordList);
     }
+
+    new ColorLegend('recordLegend', "Danceability")
+    new ColorLegend('recordLegend2', "Attribute")
 }
 
 let selected =  document.getElementById('categorySelector').value;
