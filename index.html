@@ -10,6 +10,8 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.4.0/nouislider.css" integrity="sha512-DGB74Gyw93qON+V0QxSRs1er6sqoPyFoy23HBL5LN7MRJBcjeCU22zega+vOEGE0XQLoVrv4ExcaesSTwZQA2w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+	<link href="nouislider.css" rel="stylesheet">
 
 	<!-- GOOGLE FONTS -->
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,400italic,300italic' rel='stylesheet' type='text/css'>
@@ -53,22 +55,22 @@
 			</div>
 		</div>
 
-		<!-- stacked bar chart -->
+		<!-- bar chart -->
 		<div class="row"
-			 style="height: 70vh; padding-top: 0; padding-left: 1vh; padding-right: 1vh; padding-bottom: 1vh">
+			 style="height: 80vh; padding-top: 0; padding-left: 1vh; padding-right: 1vh; padding-bottom: 1vh">
 			<div class="col">
 				<div class="chart-title text-center">Number of Tracks per Playlist</div>
 				<div class="chart-subtitle text-center">This bar chart shows the change in number of songs added to each of the top 10 playlists over time.</div>
-<!--				<div id="stackedBarChartDiv"-->
-<!--					 class="row"-->
-<!--					 style="height: 71vh; width: 100%;">-->
-<!--				</div>-->
+				<div id="barChartDiv"
+					 class="row"
+					 style="height: 71vh; width: 100%;">
+				</div>
 			</div>
-				<p>Placeholder for bar chart!</p>
 		</div>
-<!--		<div class="row slidecontainer" style="width: 30%;">-->
-<!--			<input type="range" min="1" max="100" value="50" class="slider" id="dateSlider" onchange="updateAllVisualizations()">-->
-<!--		</div>-->
+		<div class="row align-items-center">
+			<div class="col-sm-2"><p id="value-time"></p></div>
+			<div class="col-sm"><div id="slider-time"></div></div>
+		</div>
 	</div>
 
 	<!-- line chart -->
@@ -210,7 +212,8 @@
 	<h1 class="subtitle">Created by Lauren Wattendorf, Cindy Liu and Iris Yan for CS 171 2022</h1>
 </div>
 </div>
-
+<script src="https://d3js.org/d3.v6.js"></script>
+<script src="https://unpkg.com/d3-simple-slider"></script>
 
 <!-- embedding JS libraries -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
@@ -221,9 +224,9 @@
 <!-- own js files -->
 <script src="js/main.js"></script>
 <script src="js/linechart.js"></script>
-<!--<script src="js/stackedbarchart.js"></script>-->
 <script src="js/datacard.js"></script>
 <script src="js/bubblechart.js"></script>
 <script src="js/record.js"></script>
+<script src="js/barchart.js"></script>
 </body>
 </html>

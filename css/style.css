@@ -70,9 +70,8 @@ h2 {
 }
 
 /* STACKED-BAR */
-.stacked-bar {
-    stroke: var(--white);
-    stroke-width: 2px;
+.bar {
+    fill: var(--accent-green);
 }
 
 .slidecontainer {
@@ -99,7 +98,7 @@ h2 {
     appearance: none;
     width: 25px;
     height: 25px;
-    background: var(--main-green);
+    background: var(--accent-green);
     cursor: pointer;
 }
 
