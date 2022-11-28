@@ -88,6 +88,9 @@ class LineChart {
                 let selectionEnd = vis.currentBrushRegion[1]
                 d3.select("#time-period-min").text((String(selectionStart).slice(4,15)));
                 d3.select("#time-period-max").text((String(selectionEnd).slice(4,15)));
+
+                let sum = sumTracks(selectionStart,selectionEnd, vis.dateCount)
+                d3.select("#sum-tracks-label").text(sum + " tracks");
             });
 
         // Append brush component here
@@ -230,4 +233,15 @@ class LineChart {
 
     }
 
+}
+
+function sumTracks(selectionStart, selectionEnd, array){
+    console.log(array)
+    let sum = 0
+    array.forEach((date) => {
+        if (date.DATE >= selectionStart && date.DATE <= selectionEnd){
+            sum = sum + date.NUM_TRACKS_ADDED
+        }
+    })
+    return sum
 }
