@@ -99,14 +99,14 @@ class Record {
             .attr("class", "recordTextBox")
 
         let title = textBox
-            .append("text")
             .append("a")
+            .attr("href", vis.track_url)
+            .append("text")
             .text(vis.trackData.track)
             .attr("class", "recordTextBoxTitle")
-            .attr("href", vis.track_url)
             .attr("x", vis.X)
             .attr("y", vis.height*2/3)
-            // .attr('text-anchor', 'middle');
+            .attr('text-anchor', 'middle')
 
         let tempo = textBox.append("text")
             .text("Tempo: " + Math.floor(vis.tempo) + " bpm")

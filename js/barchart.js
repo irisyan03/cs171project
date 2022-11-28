@@ -97,7 +97,7 @@ class BarChart {
             .min(d3.min(dataTime))
             .max(d3.max(dataTime))
             .step(1000 * 60 * 60 * 24 * 365)
-            .width(300)
+            .width(400)
             .tickFormat(d3.timeFormat('%Y'))
             .tickValues(dataTime)
             .default(new Date(1998, 10, 3))

@@ -10,8 +10,6 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.4.0/nouislider.css" integrity="sha512-DGB74Gyw93qON+V0QxSRs1er6sqoPyFoy23HBL5LN7MRJBcjeCU22zega+vOEGE0XQLoVrv4ExcaesSTwZQA2w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-	<link href="nouislider.css" rel="stylesheet">
 
 	<!-- GOOGLE FONTS -->
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,400italic,300italic' rel='stylesheet' type='text/css'>
@@ -42,6 +40,7 @@
 		<h2>What does your Spotify usage look like now?</h2>
 		<div class="chart-title text-center">Your Top Tracks Visualized</div>
 		<div class="chart-subtitle text-center">Each record's color corresponds to its danceability, the rate of pulsing to its tempo, and size to its energy.</div>
+		<div class="recordLegend" id="recordLegend"></div>
 		<div class="recordContainer" style="height: 40vh">
 			<div class="recordBox" id="recordVis1" ></div>
 			<div class="recordBox" id="recordVis2"></div>
@@ -49,7 +48,7 @@
 			<div class="recordBox" id="recordVis4"></div>
 			<div class="recordBox" id="recordVis5"></div>
 		</div>
-		<div class="recordLegend" id="recordLegend"></div>
+
 	</div>
 
 	<!-- line chart -->
@@ -87,8 +86,8 @@
 			</div>
 		</div>
 		<div class="row align-items-center">
-			<div class="col-sm-2"><p id="value-time"></p></div>
-			<div class="col-sm"><div id="slider-time"></div></div>
+			<div class="col-4"><p class="chart-title text-center" id="value-time"></p></div>
+			<div class="col-8"><div class="text-center" id="slider-time"></div></div>
 		</div>
 	</div>
 
@@ -110,11 +109,11 @@
 						<option value="2010" class="button">2010s</option>
 					</select>
 				</main>
+				<div class="recordLegend" id="recordLegend2"></div>
 				<div id="bubbleChartDiv"
 					 class="row"
 					 style="height: 71vh; width: 100%;">
 				</div>
-				<div class="recordLegend2" id="recordLegend2"></div>
 			</div>
 		</div>
 	</div>
