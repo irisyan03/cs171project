@@ -1,0 +1,33 @@
+{
+    "timeListened": 4665824713,
+    "topArtistsByCount": [
+        "The Lumineers",
+        "Harry Styles",
+        "Bad Bunny",
+        "Taylor Swift",
+        "Lizzy McAlpine"
+    ],
+    "topSongsByCount": [
+        "So\u00f1\u00e9 Contigo",
+        "Kilby Girl",
+        "Chiquitita",
+        "Evergreen (You Didn\u2019t Deserve Me At All)",
+        "As It Was"
+    ],
+    "topArtistsByCount_count": {
+        "The Lumineers": 596,
+        "Harry Styles": 628,
+        "Bad Bunny": 633,
+        "Taylor Swift": 694,
+        "Lizzy McAlpine": 941
+    },
+    "topSongsByCount_count": {
+        "So\u00f1\u00e9 Contigo": 124,
+        "Kilby Girl": 132,
+        "Chiquitita": 145,
+        "Evergreen (You Didn\u2019t Deserve Me At All)": 165,
+        "As It Was": 214
+    },
+    "numPlaylists": 80,
+    "avgLengthPlaylist": 14.3125
+}

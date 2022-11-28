@@ -1,0 +1,33 @@
+{
+    "timeListened": 1631736897,
+    "topArtistsByCount": [
+        "Clinton Kane",
+        "Mokita",
+        "Hillsong Worship",
+        "Bethel Music",
+        "iann dior"
+    ],
+    "topSongsByCount": [
+        "People Watching",
+        "For Tonight",
+        "SLOW DANCING IN THE DARK",
+        "i don't want to watch the world end with someone else",
+        "Running Thru 3AM"
+    ],
+    "topArtistsByCount_count": {
+        "Clinton Kane": 108,
+        "Mokita": 117,
+        "Hillsong Worship": 126,
+        "Bethel Music": 164,
+        "iann dior": 345
+    },
+    "topSongsByCount_count": {
+        "People Watching": 51,
+        "For Tonight": 53,
+        "SLOW DANCING IN THE DARK": 55,
+        "i don't want to watch the world end with someone else": 62,
+        "Running Thru 3AM": 66
+    },
+    "numPlaylists": 40,
+    "avgLengthPlaylist": 43.125
+}

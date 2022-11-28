@@ -5,9 +5,9 @@
 
 class LineChart {
 
-    constructor(parentElement, userData) {
+    constructor(parentElement, inputData) {
         this.parentElement = parentElement;
-        this.userData = userData;
+        this.inputData = inputData;
         this.dateAddedArray = [];
         this.dateCount = [];
         this.formatDate = d3.timeFormat("%b %d %Y")
@@ -114,6 +114,9 @@ class LineChart {
     wrangleData(){
         let vis = this;
 
+        let index = selectedPerson
+        vis.userData = vis.inputData[index]
+
         // pull tracks added from userData
         vis.userData = vis.userData.forEach((playlist) => {
                 playlist.tracks.forEach(track => {
@@ -161,6 +164,7 @@ class LineChart {
         vis.brushGroup.call(vis.brush);
 
         vis.linePath
+            .join()
             .datum(vis.dateCount)
             .attr("d", vis.line)
             .attr("clip-path", "url(#clip)");

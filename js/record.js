@@ -5,9 +5,9 @@
 
 class Record {
 
-    constructor(parentElement, trackData, index) {
+    constructor(parentElement, inputTrackData, index) {
         this.parentElement = parentElement;
-        this.trackData = trackData;
+        this.inputTrackData = inputTrackData;
         this.index = index;
 
         this.initVis();
@@ -46,6 +46,9 @@ class Record {
 
     wrangleData(){
         let vis = this;
+
+        let index = selectedPerson;
+        vis.trackData = vis.inputTrackData[index]
 
         console.log("record", vis.trackData);
         vis.tempo = vis.trackData.audio_features[0].tempo*3

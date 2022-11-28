@@ -1,11 +1,9 @@
 class DataCard {
 
     // constructor method to initialize data card object
-    constructor(parentElement, userData, num) {
+    constructor(parentElement, inputData, num) {
         this.parentElement = parentElement;
-        this.userData = userData;
-        this.artistData = userData.topArtistsByCount;
-        this.songData = userData.topSongsByCount;
+        this.inputData = inputData;
         this.num = num
 
         this.initTable()
@@ -13,7 +11,14 @@ class DataCard {
 
     initTable() {
         let vis = this;
-        console.log(vis.artistData[0])
+        let index = selectedPerson;
+        vis.userData = vis.inputData[index]
+        console.log(vis.userData)
+        console.log("artists Data^ for cards" + vis.num)
+        vis.artistData = vis.userData.topArtistsByCount;
+        vis.songData = vis.userData.topSongsByCount;
+
+
         document.getElementsByClassName('artist_1')[vis.num].innerHTML = vis.artistData[0];
         document.getElementsByClassName('artist_2')[vis.num].innerHTML = vis.artistData[1];
         document.getElementsByClassName('artist_3')[vis.num].innerHTML = vis.artistData[2];
