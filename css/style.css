@@ -67,7 +67,6 @@ h3 {
 h2 {
     padding-bottom: 16px;
     padding-top: 36px;
-    margin-top: 30px;
 }
 
 /* STACKED-BAR */
@@ -209,10 +208,4 @@ table {
 
 * {
     background-color: transparent;
-}
-
-.recordLegend {
-    margin-top: 20px;
-    margin-bottom: 0px;
-    text-align: center;
 }

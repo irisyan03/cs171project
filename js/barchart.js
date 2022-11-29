@@ -87,6 +87,13 @@ class BarChart {
             vis.playlistArray.push({name: playlist.name, trackData: numTracksArray})
         })
 
+        let max = d3.max(vis.playlistArray.map(p => d3.max(p.trackData.map(d=>d.N))));
+        let min = d3.min(vis.playlistArray.map(p => d3.min(p.trackData.map(d=>d.N))));
+        vis.y.domain([min, max]);
+
+        vis.colorScale = d3.scaleLinear()
+            .domain([min, 2*max]);
+
         // Time
         var dataTime = d3.range(0, vis.maxYear - vis.minYear + 1).map(function(d) {
             return new Date(vis.minYear + d, 10, 3);
@@ -149,26 +156,28 @@ class BarChart {
 
         vis.x.domain(vis.topTenData.map(d => d.name));
 
-        let max = d3.max(vis.topTenData.map(d => d.num_tracks));
-        let min = d3.min(vis.topTenData.map(d => d.num_tracks));
-        vis.y.domain([min, max]);
-
         let bars = vis.svg.selectAll(".bar")
-            .data(vis.topTenData);
+            .data(vis.topTenData, function(d) { return this.tagName === "rect" ? this.key : d.name;  });
 
         bars.exit().remove();
 
+        const t = vis.svg.transition().duration(500);
+
         bars.enter()
             .append("rect")
+            .property("key", d => d.name)
             .attr("class", "bar")
             .merge(bars)
+            .transition(t)
             .attr("x", (d,i) => vis.x(d.name))
             .attr("y", d => vis.y(d.num_tracks))
             .attr("width", vis.x.bandwidth())
             .attr("height", (d,i) => vis.height - vis.y(d.num_tracks))
+            .style("fill", (d,i) => d3.interpolateViridis(vis.colorScale(d.num_tracks)))
 
         vis.svg.select(".x-axis")
             .attr("transform", "translate(0," + (vis.height) + ")")
+            .transition(t)
             .call(vis.xAxis);
 
         vis.svg.select(".y-axis")
