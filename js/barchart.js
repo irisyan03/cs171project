@@ -57,6 +57,11 @@ class BarChart {
         vis.svg.append("g")
             .attr("class", "y-axis axis");
 
+        // append tooltip
+        vis.tooltip = d3.select("body").append('div')
+            .attr('class', "tooltip")
+            .attr('id', 'lineTooltip')
+
         this.wrangleData();
     }
 
@@ -92,7 +97,9 @@ class BarChart {
         vis.y.domain([min, max]);
 
         vis.colorScale = d3.scaleLinear()
-            .domain([min, 2*max]);
+            .domain([0, 2*max]);
+
+        new ColorLegend('recordLegend1', "Number of Tracks", 0, `${max}`, true)
 
         // Time
         var dataTime = d3.range(0, vis.maxYear - vis.minYear + 1).map(function(d) {
@@ -174,6 +181,29 @@ class BarChart {
             .attr("width", vis.x.bandwidth())
             .attr("height", (d,i) => vis.height - vis.y(d.num_tracks))
             .style("fill", (d,i) => d3.interpolateViridis(vis.colorScale(d.num_tracks)))
+
+        vis.svg.selectAll("rect")
+            .on('mouseover', function(event, d){
+                d3.select(this)
+                    .style("opacity", 0.75)
+                vis.tooltip
+                    .style("opacity", 1)
+                    .style("left", event.pageX + 20 + "px")
+                    .style("top", event.pageY + "px")
+                    .html(`
+                         <div class="tooltip-background">
+                             <h3>${d.name}<h3>
+                             <h3>${d.num_tracks} tracks<h3>                      
+                         </div>`);
+            }).on('mouseout', function(event, d){
+                    d3.select(this)
+                        .style("opacity", 1)
+                    vis.tooltip
+                        .style("opacity", 0)
+                        .style("left", 0)
+                        .style("top", 0)
+                        .html(``);
+                });
 
         vis.svg.select(".x-axis")
             .attr("transform", "translate(0," + (vis.height) + ")")

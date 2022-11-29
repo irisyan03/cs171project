@@ -5,11 +5,12 @@
 
 class ColorLegend {
 
-    constructor(parentElement, title, lower, upper) {
+    constructor(parentElement, title, lower, upper, halfColors=false) {
         this.parentElement = parentElement;
         this.title = title;
         this.lower = lower;
         this.upper = upper;
+        this.halfColors = halfColors;
 
         this.initVis();
     }
@@ -31,7 +32,13 @@ class ColorLegend {
         var data = [.1,.2,.3,.4,.5,.6,.7,.8,.9,1]
         data = data.map(v => 1*v)
 
-        let row = svg.selectAll(".firstrow").data(data).enter().append("circle").attr("cx", function(d,i){return 50 + i*30}).attr("cy", 30).attr("r", 10).attr("fill", function(d){return d3.interpolateViridis(vis.colorScale(d)) })
+        let row = svg.selectAll(".firstrow")
+            .data(data).enter()
+            .append("circle")
+            .attr("cx", function(d,i){return 50 + i*30})
+            .attr("cy", 30)
+            .attr("r", 10)
+            .attr("fill", function(d){return d3.interpolateViridis(vis.colorScale(vis.halfColors ? d/2 : d))})
 
         svg.append("text")
             .attr("dx", 45)
