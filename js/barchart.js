@@ -5,9 +5,9 @@
 
 class BarChart {
 
-    constructor(parentElement, userData) {
+    constructor(parentElement, allUserData) {
         this.parentElement = parentElement;
-        this.userData = userData;
+        this.allUserData = allUserData;
         this.playlistArray = [];
         this.formatDate = d3.timeFormat("%b %d %Y")
         this.parseDate = d3.timeParse("%Y-%b-%d")
@@ -24,6 +24,12 @@ class BarChart {
         vis.margin = {top: 20, right: 20, bottom: 20, left: 40};
         vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
         vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height - vis.margin.top - vis.margin.bottom;
+
+        vis.userData = vis.allUserData[selectedPerson]
+        vis.playlistArray = [];
+        vis.minYear = 0
+        vis.maxYear = 0
+        vis.DATE = 2022
 
         // init drawing area
         vis.svg = d3.select("#" + vis.parentElement).append("svg")
@@ -118,7 +124,6 @@ class BarChart {
             .on('onchange', val => {
                 d3.select('p#value-time').text(d3.timeFormat('%Y')(val));
                 vis.DATE = val.getFullYear()
-                console.log(this.DATE)
                 vis.updateData()
             });
 
@@ -137,9 +142,7 @@ class BarChart {
         let vis = this;
         let i = vis.DATE - vis.minYear;
 
-        console.log(vis.playlistArray)
         vis.filteredData = vis.playlistArray.map(playlist => {
-            console.log(playlist.trackData)
             return {name: playlist.name, num_tracks: playlist.trackData[i].N}
         })
 
@@ -152,8 +155,6 @@ class BarChart {
         vis.filteredData.sort((a,b) => {return b.num_tracks - a.num_tracks})
 
         vis.topTenData = vis.filteredData.slice(0, 10)
-
-        console.log('final top ten', vis.topTenData);
 
         vis.updateVis()
     }
@@ -168,7 +169,7 @@ class BarChart {
 
         bars.exit().remove();
 
-        const t = vis.svg.transition().duration(500);
+        const t = vis.svg.transition().duration(300);
 
         bars.enter()
             .append("rect")
@@ -188,7 +189,7 @@ class BarChart {
                     .style("opacity", 0.75)
                 vis.tooltip
                     .style("opacity", 1)
-                    .style("left", event.pageX + 20 + "px")
+                    .style("left", event.pageX + 10 + "px")
                     .style("top", event.pageY + "px")
                     .html(`
                          <div class="tooltip-background">
@@ -218,7 +219,5 @@ class BarChart {
         d3.select('p#value-time').text(d3.timeFormat('%Y')(vis.sliderTime.value()));
 
     }
-
-
 
 }

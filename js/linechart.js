@@ -23,6 +23,10 @@ class LineChart {
         vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
         vis.height = 400 - vis.margin.top - vis.margin.bottom;
 
+        vis.userData = vis.inputData[selectedPerson]
+        vis.dateAddedArray = [];
+        vis.dateCount = []
+
         // init drawing area
         vis.svg = d3.select("#" + vis.parentElement).append("svg")
             .attr("width", vis.width + vis.margin.left + vis.margin.right)
@@ -122,9 +126,6 @@ class LineChart {
 
     wrangleData(){
         let vis = this;
-
-        let index = selectedPerson
-        vis.userData = vis.inputData[index]
 
         // pull tracks added from userData
         vis.userData = vis.userData.forEach((playlist) => {
