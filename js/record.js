@@ -138,14 +138,14 @@ class Record {
 
     animate(circle, r, tempo) {
         circle.transition()
-            .duration(tempo)
+            .duration(2*60000/tempo)
             .attr('r', r)
             .on('end', () => this.animateOut(circle, r*2, tempo))
     }
 
     animateOut(circle, r, tempo) {
         circle.transition()
-            .duration(tempo)
+            .duration(2*60000/tempo)
             .attr('r', r)
             .on('end', () => this.animate(circle, r/2, tempo))
     }
