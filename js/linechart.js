@@ -164,6 +164,9 @@ class LineChart {
         d3.select("#time-period-min").text((String(minDate).slice(4,15)));
         d3.select("#time-period-max").text((String(maxDate).slice(4,15)));
 
+        let sum = sumTracks(minDate,maxDate, vis.dateCount)
+        d3.select("#sum-tracks-label").text(sum + " tracks");
+
         console.log(vis.dateCount);
 
         vis.updateVis()
