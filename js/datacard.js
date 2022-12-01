@@ -24,6 +24,7 @@ class DataCard {
             document.getElementsByClassName(artists[i])[vis.num].innerHTML = vis.artistData[i];
             document.getElementsByClassName(tracks[i])[vis.num].innerHTML = "<a href=" + vis.userData.topSongsByCount_url[vis.songData[i]] + ">" + vis.songData[i] + "</a>"
         }
+        // document.getElementsByClassName('avg_playlist_length')[vis.num].innerHTML = "<u>Average Playlist Length:</u> " + Math.round(vis.userData.avgLengthPlaylist) + " tracks"
     }
 
 }
