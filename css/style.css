@@ -18,15 +18,19 @@
 /* MAIN */
 
 body {
-    background-color:  var(--off-white);
+    background-color: var(--off-white);
+}
+
+.alt-background {
+    background-color: var(--white);
 }
 
 .section {
-    border: 2.5px solid var(--gray);
-    border-radius: 1vh;
-    height: 95vh;
-    margin-bottom: 5vh;
-    margin-top: 5vh;
+    height: 105vh;
+    padding-bottom: 5vh;
+    padding-top: 5vh;
+    padding-left: 5vh;
+    padding-right: 5vh;
 }
 
 .title {

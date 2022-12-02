@@ -20,10 +20,10 @@
 <!-- SOME SAMPLE HTML HERE - DELETE EVERYTHING INSIDE THE BODY EXCEPT THE SCRIPTS ON THE BOTTOM TO START FROM SCRATCH -->
 <!-- DON'T WRITE CSS IN YOUR HTML LIKE WE DID HERE - THE INLINE CSS SHOULD HELP YOU TO UNDERSTAND THE BEHAVIOR OF THE ELEMENTS BETTER -
      WHEN SUBMITTING, WE ALWAYS EXPECT CLEAR SEPARATION OF HTML, CSS, AND JS INTO THE PROPER FILES -->
-<body style="padding: 5vh; padding-top: 0vh">
-<div class="container-fluid" >
+<body>
+<div  >
 	<!-- header -->
-		<div class="section title-section" style="height: 90vh; display: flex; flex-direction:column; justify-content: center">
+		<div class="section title-section" style="display: flex; flex-direction:column; justify-content: center">
 			<div style="padding-left: 10vh">
 				<h1 class="title">SEEING SOUND</h1>
 				<h1 class="subtitle">Visualizing Your Spotify Statistics</h1>
@@ -47,10 +47,10 @@
 		</div>
 
 	<!-- records -->
-		<div class="section record-section" id="section1">
+		<div class="section record-section alt-background" id="section1">
 			<h2>What does your Spotify usage look like now?</h2>
 
-			<div class="row" style="height: 80vh">
+			<div class="row" style="height: 100vh">
 			<div class="chart-title text-center">Your Top Tracks Visualized</div>
 			<div class="chart-subtitle text-center" style="padding-bottom: 3vh;">Each record's color corresponds to its danceability, the rate of pulsing to its tempo, and size to its energy.</div>
 			<div class="recordLegend" id="recordLegend"></div>
@@ -89,7 +89,7 @@
 	</div>
 
 	<!-- bar chart -->
-	<div class="section barchart-section">
+	<div class="section barchart-section alt-background">
 		<h2>How has your Spotify usage changed over time?</h2>
 
 		<div class="row"
@@ -138,12 +138,12 @@
 	</div>
 
 	<!-- stats cards -->
-	<div class="section cards-section">
+	<div class="section cards-section alt-background">
 		<h2>Now, how do you compare?</h2>
 
 		<!-- top stats card -->
 		<div class="row"
-			 style="height: 60vh; padding-top: 5vh; padding-left: 1vh; padding-right: 1vh; padding-bottom: 1vh">
+			 style="width: 100vh; padding-top: 5vh; padding-left: 1vh; padding-right: 1vh; padding-bottom: 1vh">
 			<div class="col">
 				<div class="chart-title text-center">Summary of Statistics</div>
 				<div class="chart-subtitle text-center">These downloadable, clickable cards summarize personal Spotify data and global Spotify data on top artists and tracks.</div>
