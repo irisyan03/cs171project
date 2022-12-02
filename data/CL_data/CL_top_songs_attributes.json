@@ -49,7 +49,7 @@
     ]
 },
 {
-    "track": "SLOW DANCING IN THE DARK",
+    "track": "SLOW DANCING",
     "audio_features": [
         {
             "danceability": 0.515,
@@ -74,7 +74,7 @@
     ]
 },
 {
-    "track": "i don't want to watch the world end with someone else",
+    "track": "CHICKEN TENDIES",
     "audio_features": [
         {
             "danceability": 0.535,
@@ -90,7 +90,7 @@
             "tempo": 154.163,
             "type": "audio_features",
             "id": "58qX77t2VWMWcycsh9zKLc",
-            "uri": "spotify:track:58qX77t2VWMWcycsh9zKLc",
+            "uri": "spotify:track:0awuNCj9gwJEM0seER22DW",
             "track_href": "https://api.spotify.com/v1/tracks/58qX77t2VWMWcycsh9zKLc",
             "analysis_url": "https://api.spotify.com/v1/audio-analysis/58qX77t2VWMWcycsh9zKLc",
             "duration_ms": 184505,
