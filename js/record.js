@@ -103,28 +103,28 @@ class Record {
             .text(vis.trackData.track)
             .attr("class", "recordTextBoxTitle")
             .attr("x", vis.X)
-            .attr("y", vis.height*2/3)
+            .attr("y", vis.height/2)
             .attr('text-anchor', 'middle')
 
         let tempo = textBox.append("text")
             .text("Tempo: " + Math.floor(vis.tempo) + " bpm")
             .attr("class", "recordTextBoxSubtitle")
             .attr("x", vis.X)
-            .attr("y", vis.height*2/3 + 32)
+            .attr("y", vis.height/2 + 32)
             .attr('text-anchor', 'middle');
 
         let loudness = textBox.append("text")
             .text("Energy: " + vis.energy)
             .attr("class", "recordTextBoxSubtitle")
             .attr("x", vis.X)
-            .attr("y", vis.height*2/3 + 2*32)
+            .attr("y", vis.height/2 + 2*32)
             .attr('text-anchor', 'middle');
 
         let danceablity = textBox.append("text")
             .text("Danceability: " + vis.danceability)
             .attr("class", "recordTextBoxSubtitle")
             .attr("x", vis.X)
-            .attr("y", vis.height*2/3 + 3*32)
+            .attr("y", vis.height/2 + 3*32)
             .attr('text-anchor', 'middle');
     }
 
