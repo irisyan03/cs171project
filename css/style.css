@@ -107,6 +107,10 @@ h2 {
     background-color: transparent;
 }
 
+text {
+    fill: var(--black);
+}
+
 
 .sum-tracks-label {
     padding-left: 36px;
