@@ -233,3 +233,7 @@ table {
     margin: auto;
     text-align: center;
 }
+
+#barChartInfo{
+    margin: 0px;
+}
