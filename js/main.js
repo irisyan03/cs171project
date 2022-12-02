@@ -10,6 +10,8 @@ let promises;
 let dataCardPersonal;
 let dataCardAggregate;
 let recordList = [];
+let colorLegend;
+let colorLegend2;
 
 let selectedPerson =  document.getElementById('personSelector').value;
 
@@ -23,6 +25,8 @@ function changePerson() {
         recordList[i].initVis();
     }
     bubbleChart.initVis();
+    colorLegend.initVis();
+    colorLegend2.initVis();
 }
 
 // load data using promises
@@ -76,8 +80,8 @@ function initMainPage(dataArray) {
         console.log(recordList);
     }
 
-    new ColorLegend('recordLegend', "Danceability", 0, 1)
-    new ColorLegend('recordLegend2', "Attribute", "small", "large")
+    colorLegend = new ColorLegend('recordLegend', "Danceability", 0, 1)
+    colorLegend2 = new ColorLegend('recordLegend2', "Attribute", "small", "large")
 }
 
 let selected =  document.getElementById('categorySelector').value;
