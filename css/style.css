@@ -185,6 +185,14 @@ text {
     fill: var(--accent-green);
 }
 
+.trackurl {
+    text-decoration: none;
+}
+
+.recordTextBoxTitle:hover {
+    fill: var(--main-green);
+}
+
 .recordTextBoxSubtitle {
     font-size: 16px;
 }
