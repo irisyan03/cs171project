@@ -99,6 +99,7 @@ class Record {
         let title = textBox
             .append("a")
             .attr("href", vis.track_url)
+            .attr("class", "trackurl")
             .append("text")
             .text(vis.trackData.track)
             .attr("class", "recordTextBoxTitle")

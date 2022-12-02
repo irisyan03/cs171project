@@ -107,6 +107,10 @@ h2 {
     background-color: transparent;
 }
 
+text {
+    fill: var(--black);
+}
+
 
 .sum-tracks-label {
     padding-left: 36px;
@@ -179,6 +183,14 @@ h2 {
 .recordTextBoxTitle {
     font-size: 24px;
     fill: var(--accent-green);
+}
+
+.trackurl {
+    text-decoration: none;
+}
+
+.recordTextBoxTitle:hover {
+    fill: var(--main-green);
 }
 
 .recordTextBoxSubtitle {

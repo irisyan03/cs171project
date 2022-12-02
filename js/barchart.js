@@ -68,6 +68,17 @@ class BarChart {
             .attr('class', "tooltip")
             .attr('id', 'lineTooltip')
 
+        // Axis titles
+        vis.svg.append("text")
+            .attr("x", -40)
+            .attr("y", -5)
+            .text("# Tracks");
+
+        vis.svg.append("text")
+            .attr("x", vis.width / 2)
+            .attr("y", vis.height + vis.margin.top/2)
+            .text("Playlist");
+
         this.wrangleData();
     }
 

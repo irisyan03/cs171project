@@ -121,6 +121,17 @@ class LineChart {
             .on("mousedown.zoom", null)
             .on("touchstart.zoom", null);
 
+        // Axis title
+        vis.svg.append("text")
+            .attr("x", -40)
+            .attr("y", -5)
+            .text("# Tracks Added");
+
+        vis.svg.append("text")
+            .attr("x", vis.width / 2)
+            .attr("y", vis.height + vis.margin.top)
+            .text("Date Added");
+
         this.wrangleData();
     }
 
