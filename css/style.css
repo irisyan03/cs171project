@@ -27,10 +27,7 @@ body {
 
 .section {
     height: 105vh;
-    padding-bottom: 5vh;
-    padding-top: 5vh;
-    padding-left: 5vh;
-    padding-right: 5vh;
+    padding: 5vh;
 }
 
 .title {
@@ -236,6 +233,11 @@ table {
 .recordLegend{
     margin: auto;
     text-align: center;
+}
+
+.footer {
+    padding: 5vh;
+    padding-bottom: 10vh;
 }
 
 #barChartInfo{
