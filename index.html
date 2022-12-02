@@ -146,13 +146,13 @@
 			 style="height: 60vh; padding-top: 5vh; padding-left: 1vh; padding-right: 1vh; padding-bottom: 1vh">
 			<div class="col">
 				<div class="chart-title text-center">Summary of Statistics</div>
-				<div class="chart-subtitle text-center">These downloadable, clickable cards summarize personal Spotify data and aggregate Spotify data on top artists and tracks.</div>
+				<div class="chart-subtitle text-center">These downloadable, clickable cards summarize personal Spotify data and global Spotify data on top artists and tracks.</div>
 				<div class="card-group row">
-
+					<!-- aggregate stats card -->
 					<div class="card" id="aggregate-card">
 						<img src="" class="card-img-top" alt="">
 						<div class="card-body">
-							<h4 class="card-title">Aggregate Stats</h4>
+							<h4 class="card-title">Global Stats</h4>
 							<p class="card-text"></p>
 							<h5 class="table-header">Top Artists</h5>
 							<table class="table table-striped">
@@ -188,7 +188,7 @@
 								</tr>
 								</tbody>
 							</table>
-							<h5 class="table-header">Insights</h5>
+<!--							<h5 class="table-header">Insights</h5>-->
 							<table class="table ">
 								<tbody>
 								<tr class="avg_playlist_length"></tr>
@@ -199,6 +199,7 @@
 							<button onclick="downloadAggregateCard()" class="btn btn-primary">Download Card</button>
 						</div>
 					</div>
+					<!-- personal stats card -->
 					<div class="card" id="personal-card">
 						<img src="" class="card-img-top" alt="">
 						<div class="card-body">
