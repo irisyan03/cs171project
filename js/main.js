@@ -93,13 +93,13 @@ function updateAllVisualizations(){
 
 function downloadCard(type){
     let download = document.createElement('a');
-    download.href = "data/"+ type + ".png";
+    download.href = "data/card/"+ type + ".png";
     download.download = "download" + type + ".png";
     download.click()
 }
 
 function downloadPersonalCard(){
-    downloadCard("PersonalCard")
+    downloadCard(selectedPerson)
 }
 
 function downloadAggregateCard(){
