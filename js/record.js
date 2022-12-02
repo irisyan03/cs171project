@@ -50,7 +50,6 @@ class Record {
         let index = selectedPerson;
         vis.trackData = vis.inputTrackData[index]
 
-        console.log("record", vis.trackData);
         vis.tempo = vis.trackData.audio_features[0].tempo*3
         vis.energy = vis.trackData.audio_features[0].energy
         vis.danceability = vis.trackData.audio_features[0].danceability
@@ -84,12 +83,11 @@ class Record {
                     if (i == 5) {
                         return "#2D3142";
                     }
-                    return "white";
+                    return "#F5F4E9";
                 });
 
             circle
                 .append("a")
- /*               .attr("href", vis.trackData.audio)*/
                 .attr("href", vis.track_url)
 
             this.animate(circle, vis.radii[i], vis.tempo)
@@ -128,24 +126,18 @@ class Record {
             .attr("x", vis.X)
             .attr("y", vis.height*2/3 + 3*32)
             .attr('text-anchor', 'middle');
-
-        // let link = textBox.append("text")
-        //     .append("a")
-        //     .text("Listen on Spotify")
-        //     .attr("class", "recordLinkBoxLink")
-        //     .attr("href", vis.track_url)
     }
 
     animate(circle, r, tempo) {
         circle.transition()
-            .duration(2*60000/tempo)
+            .duration(2000 / tempo * 60 )
             .attr('r', r)
             .on('end', () => this.animateOut(circle, r*2, tempo))
     }
 
     animateOut(circle, r, tempo) {
         circle.transition()
-            .duration(2*60000/tempo)
+            .duration(2000 / tempo * 60 )
             .attr('r', r)
             .on('end', () => this.animate(circle, r/2, tempo))
     }

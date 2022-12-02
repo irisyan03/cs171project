@@ -105,3 +105,4 @@ function downloadPersonalCard(){
 function downloadAggregateCard(){
     downloadCard("AggregateCard")
 }
+

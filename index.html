@@ -12,53 +12,63 @@
 	<link rel="stylesheet" href="css/style.css">
 
 	<!-- GOOGLE FONTS -->
-	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,400italic,300italic' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Alegreya:400,100,300,500,400italic,300italic' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Rubik:400,100,300,500,400italic,300italic' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,100,300,500,400italic,300italic' rel='stylesheet' type='text/css'>
 </head>
 
 <!-- SOME SAMPLE HTML HERE - DELETE EVERYTHING INSIDE THE BODY EXCEPT THE SCRIPTS ON THE BOTTOM TO START FROM SCRATCH -->
 <!-- DON'T WRITE CSS IN YOUR HTML LIKE WE DID HERE - THE INLINE CSS SHOULD HELP YOU TO UNDERSTAND THE BEHAVIOR OF THE ELEMENTS BETTER -
      WHEN SUBMITTING, WE ALWAYS EXPECT CLEAR SEPARATION OF HTML, CSS, AND JS INTO THE PROPER FILES -->
-<body style="padding: 5vh">
+<body style="padding: 5vh; padding-top: 0vh">
 <div class="container-fluid" >
-	<!-- creative vis header -->
-	<div class="section">
-		<div class="row" style="padding-top: 5vh; padding-bottom: 1vh">
-			<h1 class="title">Seeing Sound</h1>
-			<h1 class="subtitle">Visualizing Spotify Statistics</h1>
-		</div>
-		<div class="row" style="padding-top: 5vh; padding-bottom: 1vh">
-			<div class="chart-title text-center">Select Your User</div>
-			<div class="chart-subtitle text-center">Select someone's data to explore and display!</div>
-			<main >
-				<select id='personSelector' class="custom-select align-self-center menu" style="width: 20%; height: 3vh" onchange="changePerson()">
-					<option value="0" class="button" selected>Iris</option>
-					<option value="1" class="button">Lauren</option>
-					<option value="2" class="button">Cindy</option>
-				</select>
-			</main>
-		</div>
-		<h2>What does your Spotify usage look like now?</h2>
-		<div class="chart-title text-center">Your Top Tracks Visualized</div>
-		<div class="chart-subtitle text-center">Each record's color corresponds to its danceability, the rate of pulsing to its tempo, and size to its energy.</div>
-		<div class="recordLegend" id="recordLegend"></div>
-		<div class="recordContainer" style="height: 40vh">
-			<div class="recordBox" id="recordVis1" ></div>
-			<div class="recordBox" id="recordVis2"></div>
-			<div class="recordBox" id="recordVis3"></div>
-			<div class="recordBox" id="recordVis4"></div>
-			<div class="recordBox" id="recordVis5"></div>
+	<!-- header -->
+		<div class="section title-section" style="height: 90vh; display: flex; flex-direction:column; justify-content: center">
+			<div style="padding-left: 10vh">
+				<h1 class="title">SEEING SOUND</h1>
+				<h1 class="subtitle">Visualizing Your Spotify Statistics</h1>
+			</div>
+			<div class="row" style="padding-top: 5vh; padding-bottom: 1vh">
+				<div class="chart-title text-center">Select Your User</div>
+				<div class="chart-subtitle text-center">Select someone's data to explore and display!</div>
+				<main>
+					<select id='personSelector' class="custom-select align-self-center menu" style="width: 20%; height: 3vh" onchange="changePerson()">
+						<option value="0" class="button" selected>Iris</option>
+						<option value="1" class="button">Lauren</option>
+						<option value="2" class="button">Cindy</option>
+					</select>
+				</main>
+			</div>
+			<div style="padding-top: 5vh; padding-bottom: 1vh" class="align-self-center">
+				<button type="button" class="btn btn-secondary" onClick="document.getElementById('section1').scrollIntoView();">
+					GO
+				</button>
+			</div>
 		</div>
 
-	</div>
+	<!-- records -->>
+		<div class="section record-section" id="section1">
+			<h2>What does your Spotify usage look like now?</h2>
+
+			<div class="chart-title text-center">Your Top Tracks Visualized</div>
+			<div class="chart-subtitle text-center">Each record's color corresponds to its danceability, the rate of pulsing to its tempo, and size to its energy.</div>
+			<div class="recordLegend" id="recordLegend"></div>
+			<div class="recordContainer" style="height: 40vh">
+				<div class="recordBox" id="recordVis1" ></div>
+				<div class="recordBox" id="recordVis2"></div>
+				<div class="recordBox" id="recordVis3"></div>
+				<div class="recordBox" id="recordVis4"></div>
+				<div class="recordBox" id="recordVis5"></div>
+			</div>
+		</div>
 
 	<!-- line chart -->
-	<div class="section">
+	<div class="section linechart-section container">
 		<h2>How has your Spotify usage changed over time?</h2>
 
-		<div class="row"
-			 style="height: 60vh; padding-top: 0; padding-left: 1vh; padding-right: 1vh; padding-bottom: 1vh">
-			<div class="col">
+		<div class="row align-items-center"
+			 style="height: 80vh; padding-top: 0; padding-left: 1vh; padding-right: 1vh; padding-bottom: 1vh">
+			<div class="col align-self-center">
 				<div class="chart-title text-center">Number of Tracks Added to Playlists Over Time</div>
 				<div class="chart-subtitle text-center">This zoomable line graph shows number of added tracks, with a brush region showing the aggregate over that period.</div>
 				<div class="time-period">
@@ -66,16 +76,20 @@
 					<h3> -- </h3>
 					<h3 id = "time-period-max">2013-12-31</h3>
 				</div>
-				<h4 id="sum-tracks-label">1664 tracks</h4>
+				<h4 class="sum-tracks-label" id="sum-tracks-label">1664 tracks</h4>
 
 				<div id="playlistLineChartDiv"
 					 class="row"
-					 style="height: 71vh; width: 100%;">
+					 style="height: 70vh; width: 100%;">
 				</div>
 			</div>
 		</div>
+	</div>
 
-		<!-- bar chart -->
+	<!-- bar chart -->
+	<div class="section barchart-section">
+		<h2>How has your Spotify usage changed over time?</h2>
+
 		<div class="row"
 			 style="height: 85vh; padding-top: 0; padding-left: 1vh; padding-right: 1vh; padding-bottom: 1vh">
 			<div class="col">
@@ -94,8 +108,8 @@
 		</div>
 	</div>
 
-	<!-- line chart -->
-	<div class="section">
+	<!-- bubble chart -->
+	<div class="section bubblechart-section">
 		<h2>How has everyone else's Spotify usage changed over time?</h2>
 		<div class="row"
 			 style="height: 85vh; padding-top: 0; padding-left: 1vh; padding-right: 1vh; padding-bottom: 1vh">
@@ -121,8 +135,8 @@
 		</div>
 	</div>
 
-	<!-- line chart -->
-	<div class="section">
+	<!-- stats cards -->
+	<div class="section cards-section">
 		<h2>Now, how do you compare?</h2>
 
 		<!-- top stats card -->

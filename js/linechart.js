@@ -19,9 +19,9 @@ class LineChart {
     initVis(){
         let vis = this;
 
-        vis.margin = {top: 20, right: 20, bottom: 20, left: 40};
+        vis.margin = {top: 20, right: 50, bottom: 20, left: 50};
         vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
-        vis.height = 400 - vis.margin.top - vis.margin.bottom;
+        vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height * 3/4 - vis.margin.left - vis.margin.right;
 
         vis.userData = vis.inputData[selectedPerson]
         vis.dateAddedArray = [];
