@@ -52,7 +52,7 @@
 
 			<div class="row" style="height: 80vh">
 			<div class="chart-title text-center">Your Top Tracks Visualized</div>
-			<div class="chart-subtitle text-center">Each record's color corresponds to its danceability, the rate of pulsing to its tempo, and size to its energy.</div>
+			<div class="chart-subtitle text-center" style="padding-bottom: 3vh;">Each record's color corresponds to its danceability, the rate of pulsing to its tempo, and size to its energy.</div>
 			<div class="recordLegend" id="recordLegend"></div>
 			<div class="recordContainer" style="height: 70vh">
 				<div class="recordBox" id="recordVis1" ></div>
@@ -93,14 +93,14 @@
 		<h2>How has your Spotify usage changed over time?</h2>
 
 		<div class="row"
-			 style="padding-top: 0; padding-left: 1vh; padding-right: 1vh; padding-bottom: 1vh">
+			 style="padding-top: 0; padding-left: 1vh; padding-right: 1vh; padding-bottom: 0">
 			<div class="col">
 				<div class="chart-title text-center">Number of Tracks per Playlist</div>
-				<div class="chart-subtitle text-center">This bar chart shows the change in number of songs added to each of the top 10 playlists over time.</div>
+				<div class="chart-subtitle text-center" style="padding-bottom: 3vh;">This bar chart shows the change in number of songs added to each of the top 10 playlists over time.</div>
 				<div class="recordLegend" id="recordLegend1"></div>
 				<div id="barChartDiv"
 					 class="row"
-					 style="height: 60vh; width: 100%;">
+					 style="height: 57vh; width: 100%;">
 				</div>
 			</div>
 			<div class="row align-items-center">
@@ -112,13 +112,13 @@
 
 	<!-- bubble chart -->
 	<div class="section bubblechart-section">
-		<h2>How has everyone else's Spotify usage changed over time?</h2>
+		<h2>How has global Spotify usage changed over time?</h2>
 		<div class="row"
 			 style="height: 80vh; padding-top: 0; padding-left: 1vh; padding-right: 1vh; padding-bottom: 1vh">
 			<div class="col">
 				<div class="chart-title text-center">Musical Attributes of Top Songs Over Time</div>
 				<div class="chart-subtitle text-center">Each bubble corresponds to an attribute, with color and size scaled relative to all aggregate data, which can be updated for different decades.</div>
-				<main >
+				<main>
 					<select id='categorySelector' class="custom-select align-self-center menu" style="width: 20%; height: 30px" onchange="categoryChange()">
 						<option value="1960" class="button" selected>1960s</option>
 						<option value="1970" class="button">1970s</option>
@@ -128,7 +128,7 @@
 						<option value="2010" class="button">2010s</option>
 					</select>
 				</main>
-				<div class="recordLegend" id="recordLegend2"></div>
+				<div class="recordLegend" id="recordLegend2" style="padding-top: 3vh;"></div>
 				<div id="bubbleChartDiv"
 					 class="row"
 					 style="height: 60vh; width: 100%;">
