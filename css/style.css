@@ -26,9 +26,9 @@ body {
 }
 
 .section {
-    height: 90vh;
-    margin-bottom: 5vh;
-    margin-top: 5vh;
+    height: 105vh;
+    padding-bottom: 5vh;
+    padding-top: 5vh;
     padding-left: 5vh;
     padding-right: 5vh;
 }
