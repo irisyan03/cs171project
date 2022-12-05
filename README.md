@@ -12,12 +12,12 @@
 We will examine listener and music trends on Spotify using Spotify Research’s data on playlists and streaming sessions. This project is motivated by our shared love for curating playlists and exploring new music, most often fueled by Spotify’s database of songs, recommendations, and features such as “Spotify Wrapped” and its analysis of music preferences. In our project, we will be analyzing both trends on an individual level, e.g. visualizing common music genres and themes, a dashboard of minutes spent, top artists/songs, a color that corresponds to the overall music portfolio of a user, etc., and an interpersonal level, e.g., visualizing how these previously discussed individual attributes lend way to similarities and differences between multiple users. 
 
 ## Project Process Book:
-https://docs.google.com/document/d/1PjwiiLB2XYJPOPnJjx-fyO9-cVUHOWfq2ThPgl2WOKE/edit
+Our process book is here: https://docs.google.com/document/d/1PjwiiLB2XYJPOPnJjx-fyO9-cVUHOWfq2ThPgl2WOKE/edit
 
 This file is also attached as PDF in this directory!
 
 ## Project Video:
-https://drive.google.com/file/d/1kQIl63GD8ayL3M0FNM75nfPQ5GC3liZh/view?usp=share_link
+The video rundown of our project can be found here: https://drive.google.com/file/d/1kQIl63GD8ayL3M0FNM75nfPQ5GC3liZh/view?usp=share_link
 
 ## How to Use:
 Our code is implemented with the base website in index.html, 
@@ -37,3 +37,7 @@ which is obtained by running index.html.
 
 More detailed implementation notes can be found in the comments of each of the 
 individual files. 
+
+## Live Site:
+This project is hosted live at 
+https://irisyan03.github.io/cs171project/
