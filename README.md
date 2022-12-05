@@ -36,7 +36,7 @@ these are the primary files pulled together and used for rendering our final web
 which is obtained by running index.html. 
 
 More detailed implementation notes can be found in the comments of each of the 
-individual files. 
+individual files. The write up of the different data fields can be found in data.md, in the data folder.
 
 ## Live Site:
 This project is hosted live at 
