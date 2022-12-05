@@ -2,7 +2,7 @@
 *           MAIN           *
 * * * * * * * * * * * * * */
 
-// init global variables, switches, helper functions
+// Init global variables, switches, helper functions
 let playlistLineChart;
 let bubbleChart;
 let barChart;
@@ -29,7 +29,7 @@ function changePerson() {
     colorLegend2.initVis();
 }
 
-// load data using promises
+// Load data using promises
 // 0, 3, and 6 : Personal Data
 // 1, 4, and 7 : Top Stats
 // 2, 5, and 8 : Top Songs Attributes
@@ -70,9 +70,10 @@ function initMainPage(dataArray) {
     dataCardPersonal = new DataCard('personal-card', [dataArray[1], dataArray[4], dataArray[7]],1);
     dataCardAggregate = new DataCard('aggregate-card',[dataArray[9], dataArray[9], dataArray[9]],0);
 
+    // instantiate bubble  chart
     bubbleChart = new BubbleChart('bubbleChartDiv', dataArray[10]);
-    // initiate records
 
+    // instantiate records
     for (let i = 0; i < 5; i++) {
         let r = new Record(`recordVis${i+1}`, [dataArray[2][i], dataArray[5][i], dataArray[8][i]]);
         recordList.push(r);
@@ -80,21 +81,21 @@ function initMainPage(dataArray) {
         console.log(recordList);
     }
 
+    // instantiate legends
     colorLegend = new ColorLegend('recordLegend', "Danceability", 0, 1)
     colorLegend2 = new ColorLegend('recordLegend2', "Attribute", "small", "large")
 }
 
+// getting decade setting for bubble chart
 let selected =  document.getElementById('categorySelector').value;
 
+// update function for bubble chart
 function categoryChange() {
     selected = document.getElementById("categorySelector").value;
-    bubbleChart.wrangleData(); // maybe you need to change this slightly depending on the name of your MapVis instance
+    bubbleChart.wrangleData();
 }
 
-function updateAllVisualizations(){
-    bubbleChart.updateVis()
-}
-
+// downloading cards
 function downloadCard(type){
     let download = document.createElement('a');
     download.href = "data/card/"+ type + ".png";
