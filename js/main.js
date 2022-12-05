@@ -20,7 +20,7 @@ function changePerson() {
     d3.selectAll("svg").remove();
     barChart.initVis();
     playlistLineChart.initVis();
-    dataCardPersonal.initTable();
+    dataCardPersonal.initVis();
     for (let i = 0; i < 5; i++) {
         recordList[i].initVis();
     }
