@@ -25,14 +25,13 @@ class ColorLegend {
         vis.colorScale = d3.scaleLinear()
             .domain([0,1]);
 
-        // create svg element
-        var svg = d3.select(`#${vis.parentElement}`).append("svg").attr("width", 325).attr("height",80)
+        let svg = d3.select(`#${vis.parentElement}`).append("svg").attr("width", 325).attr("height",80)
 
-        // Create data
-        var data = [.1,.2,.3,.4,.5,.6,.7,.8,.9,1]
+        // creates ten circles to show color scale
+        let data = [.1,.2,.3,.4,.5,.6,.7,.8,.9,1]
         data = data.map(v => 1*v)
 
-        let row = svg.selectAll(".firstrow")
+        svg.selectAll(".firstrow")
             .data(data).enter()
             .append("circle")
             .attr("cx", function(d,i){return 25 + i*30})
@@ -40,17 +39,20 @@ class ColorLegend {
             .attr("r", 10)
             .attr("fill", function(d){return d3.interpolateViridis(vis.colorScale(vis.halfColors ? d/2 : d))})
 
+        // legend title (attribute color scale represents)
         svg.append("text")
             .attr("dx", 25)
             .attr("dy", 10)
             .text(vis.title);
 
+        // left label
         svg.append("text")
             .attr("dx", 25)
             .attr("dy", 60)
             .text(vis.lower)
             .attr("text-anchor", "middle");
 
+        // right label
         svg.append("text")
             .attr("dx", 295)
             .attr("dy", 60)

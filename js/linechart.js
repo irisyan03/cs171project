@@ -23,17 +23,18 @@ class LineChart {
         vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
         vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height - vis.margin.top - vis.margin.bottom;
 
+        // must set class variables here
+        // so that they are reset when initVis called
         vis.userData = vis.inputData[selectedPerson]
         vis.dateAddedArray = [];
         vis.dateCount = []
 
-        // init drawing area
+        // create drawing area
         vis.svg = d3.select("#" + vis.parentElement).append("svg")
             .attr("width", vis.width + vis.margin.left + vis.margin.right)
             .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
             .append('g')
             .attr('transform', `translate (${vis.margin.left}, ${vis.margin.top})`);
-
 
         // Scales and axes
         vis.xScale = d3.scaleTime()
@@ -56,12 +57,17 @@ class LineChart {
         vis.svg.append("g")
             .attr("class", "y-axis axis");
 
+        // draw line and line path
         vis.linePath = vis.svg.append("path")
             .attr("fill", "none")
             .attr("class", "line")
             .attr("stroke-width", 1.5);
 
-        // Define the clipping region
+        vis.line = d3.line()
+            .x(function(d) { return vis.xScale(d.DATE) })
+            .y(function(d) { return vis.yScale(d.NUM_TRACKS_ADDED) })
+
+        // define the clipping region for brushing
         vis.clipPath = vis.svg.append("defs")
             .append("clipPath")
             .attr("id", "clip")
@@ -69,16 +75,7 @@ class LineChart {
             .attr("width", vis.width)
             .attr("height", vis.height);
 
-        vis.line = d3.line()
-            .x(function(d) { return vis.xScale(d.DATE) })
-            .y(function(d) { return vis.yScale(d.NUM_TRACKS_ADDED) })
-
-        // append tooltip
-        vis.tooltip = d3.select("body").append('div')
-            .attr('class', "tooltip")
-            .attr('id', 'lineTooltip')
-
-        // Initialize brushing component
+        // initialize brushing component
         vis.currentBrushRegion = null;
         vis.brush = d3.brushX()
             .extent([[0,15],[vis.width, vis.height]])
@@ -97,31 +94,28 @@ class LineChart {
                 d3.select("#sum-tracks-label").text(sum + " tracks");
             });
 
-        // Append brush component here
         vis.brushGroup = vis.svg.append("g")
             .call(vis.brush);
 
-        // Add zoom component
-        vis.xOrig = vis.xScale; // save original scale
-
+        // zoom component
+        vis.xOrig = vis.xScale;
         vis.zoomFunction = function(event) {
             vis.xScale = event.transform.rescaleX(vis.xOrig);
             if (vis.currentBrushRegion) {
                 vis.brushGroup.call(vis.brush.move, vis.currentBrushRegion.map(vis.xScale));
             }
             vis.updateVis();
-        } // function that is being called when user zooms
+        }
 
         vis.zoom = d3.zoom()
             .on("zoom", vis.zoomFunction)
             .scaleExtent([1,20]);
 
-        // disable mousedown and drag in zoom, when you activate zoom (by .call)
         vis.brushGroup.call(vis.zoom)
             .on("mousedown.zoom", null)
             .on("touchstart.zoom", null);
 
-        // Axis title
+        // axis titles
         vis.svg.append("text")
             .attr("x", -40)
             .attr("y", -5)
@@ -131,6 +125,11 @@ class LineChart {
             .attr("x", vis.width / 2)
             .attr("y", vis.height + vis.margin.top)
             .text("Date Added");
+
+        // append tooltip
+        vis.tooltip = d3.select("body").append('div')
+            .attr('class', "tooltip")
+            .attr('id', 'lineTooltip')
 
         this.wrangleData();
     }
@@ -164,6 +163,7 @@ class LineChart {
             }
         }
 
+        // update axes
         let maxY = d3.max(vis.dateCount, d => d.NUM_TRACKS_ADDED);
         let minY = d3.min(vis.dateCount, d => d.NUM_TRACKS_ADDED);
         vis.yScale.domain([minY, maxY]);
@@ -172,13 +172,11 @@ class LineChart {
         let maxDate = vis.dateCount[vis.dateCount.length-1].DATE;
         vis.xScale.domain([minDate, maxDate]);
 
+        // update brushing label
         d3.select("#time-period-min").text((String(minDate).slice(4,15)));
         d3.select("#time-period-max").text((String(maxDate).slice(4,15)));
-
         let sum = sumTracks(minDate,maxDate, vis.dateCount)
         d3.select("#sum-tracks-label").text(sum + " tracks");
-
-        console.log(vis.dateCount);
 
         vis.updateVis()
 
@@ -187,7 +185,6 @@ class LineChart {
     updateVis(){
         let vis = this;
 
-        // Call brush component here
         vis.brushGroup.call(vis.brush);
 
         vis.linePath
@@ -201,17 +198,14 @@ class LineChart {
             .attr("d", vis.line)
             .attr("clip-path", "url(#clip)");
 
-        // draw points
-        let circles = vis.svg.selectAll("circle")
-
-        circles.data(vis.dateCount, d=>d)
+        // draw points for tooltip
+        vis.svg.selectAll("circle").data(vis.dateCount, d=>d)
             .join("circle")
             .attr("class", "circle")
             .attr("r", "2")
             .attr("cx", d => vis.xScale(d.DATE))
             .attr("cy", d=> vis.yScale(d.NUM_TRACKS_ADDED))
 
-        // draw points
         let tooltipArea = vis.svg.selectAll("circle")
 
         tooltipArea.data(vis.dateCount, d=>d)

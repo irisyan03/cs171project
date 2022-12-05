@@ -9,11 +9,9 @@ class BarChart {
         this.parentElement = parentElement;
         this.allUserData = allUserData;
         this.playlistArray = [];
-        this.formatDate = d3.timeFormat("%b %d %Y")
-        this.parseDate = d3.timeParse("%Y-%b-%d")
-        this.minYear = 0
-        this.maxYear = 0
-        this.DATE = 2022
+        this.minYear = 0;
+        this.maxYear = 0;
+        this.DATE = 2022;
 
         this.initVis();
     }
@@ -25,11 +23,13 @@ class BarChart {
         vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
         vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height - vis.margin.top - vis.margin.bottom;
 
+        // must set class variables here
+        // so that they are reset when initVis called
         vis.userData = vis.allUserData[selectedPerson]
         vis.playlistArray = [];
-        vis.minYear = 0
-        vis.maxYear = 0
-        vis.DATE = 2022
+        vis.minYear = 0;
+        vis.maxYear = 0;
+        vis.DATE = 2022;
 
         // init drawing area
         vis.svg = d3.select("#" + vis.parentElement).append("svg")
@@ -38,12 +38,7 @@ class BarChart {
             .append('g')
             .attr('transform', `translate (${vis.margin.left}, ${vis.margin.top})`);
 
-        // append tooltip
-        vis.tooltip = d3.select("body").append('div')
-            .attr('class', "tooltip")
-            .attr('id', 'tooltop')
-
-        // Scales and axes
+        // scales and axes
         vis.x = d3.scaleBand()
             .rangeRound([0, vis.width])
             .paddingInner(0.1);
@@ -63,12 +58,7 @@ class BarChart {
         vis.svg.append("g")
             .attr("class", "y-axis axis");
 
-        // append tooltip
-        vis.tooltip = d3.select("body").append('div')
-            .attr('class', "tooltip")
-            .attr('id', 'lineTooltip')
-
-        // Axis titles
+        // axis titles
         vis.svg.append("text")
             .attr("x", -40)
             .attr("y", -5)
@@ -79,12 +69,16 @@ class BarChart {
             .attr("y", vis.height + vis.margin.top/2)
             .text("Playlist");
 
+        // append tooltip
+        vis.tooltip = d3.select("body").append('div')
+            .attr('class', "tooltip")
+            .attr('id', 'lineTooltip')
+
         this.wrangleData();
     }
 
     wrangleData() {
         let vis = this
-        // Pulling this straight from dataTable.js
         let filteredData = [];
 
         // pull out min and max year of date added to playlist
@@ -94,6 +88,8 @@ class BarChart {
         vis.minYear = new Date(Math.min(...allDateAdded)).getFullYear()
         vis.maxYear = new Date(Math.max(...allDateAdded)).getFullYear()
 
+        // create playlistArray of playlist name and array of
+        // num of tracks in playlist per year
         vis.userData.forEach((playlist) => {
             let numTracks = 0;
             let numTracksArray = []
@@ -109,28 +105,31 @@ class BarChart {
             vis.playlistArray.push({name: playlist.name, trackData: numTracksArray})
         })
 
+        // get min and max playlist size for axis
         let max = d3.max(vis.playlistArray.map(p => d3.max(p.trackData.map(d=>d.N))));
         let min = d3.min(vis.playlistArray.map(p => d3.min(p.trackData.map(d=>d.N))));
         vis.y.domain([min, max]);
 
+        // create color scale and add legend
         vis.colorScale = d3.scaleLinear()
             .domain([0, 2*max]);
 
         new ColorLegend('recordLegend1', "Number of Tracks", 0, `${max}`, true)
 
-        // Time
-        var dataTime = d3.range(0, vis.maxYear - vis.minYear + 1).map(function(d) {
+        // range of dates in playlistArray
+        let dates = d3.range(0, vis.maxYear - vis.minYear + 1).map(function(d) {
             return new Date(vis.minYear + d, 10, 3);
         });
 
+        // slider for choosing year
         vis.sliderTime = d3
             .sliderBottom()
-            .min(d3.min(dataTime))
-            .max(d3.max(dataTime))
+            .min(d3.min(dates))
+            .max(d3.max(dates))
             .step(1000 * 60 * 60 * 24 * 365)
             .width(400)
             .tickFormat(d3.timeFormat('%Y'))
-            .tickValues(dataTime)
+            .tickValues(dates)
             .default(new Date(1998, 10, 3))
             .on('onchange', val => {
                 d3.select('p#value-time').text(d3.timeFormat('%Y')(val));
@@ -149,22 +148,18 @@ class BarChart {
         this.updateData()
     }
 
+    // updates data to slider range
     updateData() {
         let vis = this;
         let i = vis.DATE - vis.minYear;
 
+        // filter data based on selected year
         vis.filteredData = vis.playlistArray.map(playlist => {
             return {name: playlist.name, num_tracks: playlist.trackData[i].N}
         })
 
-        // sort data
-        vis.filteredData.sort(function(a,b){
-            return - (a.num_tracks - b.num_tracks);
-        });
-
-        // Sort and then filter by top 10
+        // sort then filter to top 10 largest playlists
         vis.filteredData.sort((a,b) => {return b.num_tracks - a.num_tracks})
-
         vis.topTenData = vis.filteredData.slice(0, 10)
 
         vis.updateVis()
@@ -180,20 +175,23 @@ class BarChart {
 
         bars.exit().remove();
 
+        // transition bars and axis together
         const t = vis.svg.transition().duration(300);
 
+        // create bars
         bars.enter()
             .append("rect")
             .property("key", d => d.name)
             .attr("class", "bar")
             .merge(bars)
             .transition(t)
-            .attr("x", (d,i) => vis.x(d.name))
+            .attr("x", d => vis.x(d.name))
             .attr("y", d => vis.y(d.num_tracks))
             .attr("width", vis.x.bandwidth())
-            .attr("height", (d,i) => vis.height - vis.margin.bottom - vis.y(d.num_tracks))
-            .style("fill", (d,i) => d3.interpolateViridis(vis.colorScale(d.num_tracks)))
+            .attr("height", d => vis.height - vis.margin.bottom - vis.y(d.num_tracks))
+            .style("fill", d => d3.interpolateViridis(vis.colorScale(d.num_tracks)))
 
+        // add tooltip
         vis.svg.selectAll("rect")
             .on('mouseover', function(event, d){
                 d3.select(this)
@@ -217,6 +215,7 @@ class BarChart {
                         .html(``);
                 });
 
+        // update axes
         vis.svg.select(".x-axis")
             .attr("transform", "translate(0," + (vis.height - vis.margin.bottom) + ")")
             .transition(t)
@@ -225,8 +224,8 @@ class BarChart {
         vis.svg.select(".y-axis")
             .call(vis.yAxis);
 
+        // update slider label
         vis.gTime.call(vis.sliderTime);
-
         d3.select('p#value-time').text(d3.timeFormat('%Y')(vis.sliderTime.value()));
 
     }

@@ -5,10 +5,9 @@
 
 class Record {
 
-    constructor(parentElement, inputTrackData, index) {
+    constructor(parentElement, inputTrackData) {
         this.parentElement = parentElement;
         this.inputTrackData = inputTrackData;
-        this.index = index;
 
         this.initVis();
     }
@@ -24,9 +23,8 @@ class Record {
         vis.R = vis.AREA/6;
         vis.LINE_WIDTH = 2;
         vis.X = vis.AREA/2;
-
         vis.radii = [vis.R, vis.R*5/6, vis.R*5/6-vis.LINE_WIDTH, vis.R*3.5/6, vis.R*3.5/6-vis.LINE_WIDTH, vis.R*2/6, vis.R/6];
-        // init drawing area
+
         vis.svg = d3.select("#" + vis.parentElement).append("svg")
             .attr("width", vis.width + vis.margin.left + vis.margin.right)
             .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
@@ -36,7 +34,6 @@ class Record {
         vis.colorScale = d3.scaleLinear()
             .domain([0,1]);
 
-        // append tooltip
         vis.tooltip = d3.select("body").append('div')
             .attr('class', "tooltip")
             .attr('id', 'lineTooltip')
@@ -47,8 +44,7 @@ class Record {
     wrangleData(){
         let vis = this;
 
-        let index = selectedPerson;
-        vis.trackData = vis.inputTrackData[index]
+        vis.trackData = vis.inputTrackData[selectedPerson]
 
         vis.tempo = vis.trackData.audio_features[0].tempo*3
         vis.energy = vis.trackData.audio_features[0].energy
@@ -56,7 +52,7 @@ class Record {
         let uri = vis.trackData.audio_features[0].uri
         vis.track_url = "https://open.spotify.com/track/" + uri.slice(14)
 
-        // make the max radii relative to the energy metric
+        // set the max radii relative to the energy metric
         vis.R = vis.R * vis.trackData.audio_features[0].energy
         vis.radii = [vis.R, vis.R*5/6, vis.R*5/6-vis.LINE_WIDTH, vis.R*3.5/6, vis.R*3.5/6-vis.LINE_WIDTH, vis.R*2/6, vis.R/6];
 
@@ -74,6 +70,7 @@ class Record {
                 .attr("cx", vis.X)
                 .attr("cy", vis.height/4)
                 .style("fill", function() {
+                    // creates layered circles to give the appearance of records
                     if (i == 0 || i == 2 || i == 4) {
                         return d3.interpolateViridis(vis.colorScale(vis.danceability))
                     }
@@ -81,22 +78,20 @@ class Record {
                         return d3.interpolateViridis(vis.colorScale(vis.danceability)+.1)
                     }
                     if (i == 5) {
-                        return "#2D3142";
+                        return "#2D3142"; // dark gray center circle
                     }
-                    return "#F5F4E9";
+                    return "#F5F4E9"; // white center circle
                 });
-
-            circle
-                .append("a")
-                .attr("href", vis.track_url)
-
+            // animate the circle to the tempo of the track
             this.animate(circle, vis.radii[i], vis.tempo)
         }
 
+        // text group for record label
         let textBox = vis.svg.append("g")
             .attr("class", "recordTextBox")
 
-        let title = textBox
+        // track title + link to track on spotify
+        textBox
             .append("a")
             .attr("href", vis.track_url)
             .attr("class", "trackurl")
@@ -107,21 +102,24 @@ class Record {
             .attr("y", vis.height/2)
             .attr('text-anchor', 'middle')
 
-        let tempo = textBox.append("text")
+        // tempo label
+        textBox.append("text")
             .text("Tempo: " + Math.floor(vis.tempo) + " bpm")
             .attr("class", "recordTextBoxSubtitle")
             .attr("x", vis.X)
             .attr("y", vis.height/2 + 32)
             .attr('text-anchor', 'middle');
 
-        let loudness = textBox.append("text")
+        // energy label
+        textBox.append("text")
             .text("Energy: " + vis.energy)
             .attr("class", "recordTextBoxSubtitle")
             .attr("x", vis.X)
             .attr("y", vis.height/2 + 2*32)
             .attr('text-anchor', 'middle');
 
-        let danceablity = textBox.append("text")
+        // danceability label
+        textBox.append("text")
             .text("Danceability: " + vis.danceability)
             .attr("class", "recordTextBoxSubtitle")
             .attr("x", vis.X)
@@ -129,6 +127,9 @@ class Record {
             .attr('text-anchor', 'middle');
     }
 
+    // animation helper functions:
+    // once animation starts, cycles between the two functions,
+    // animating in and out relative to track tempo
     animate(circle, r, tempo) {
         circle.transition()
             .duration(2000 / tempo * 60 )
@@ -141,19 +142,5 @@ class Record {
             .duration(2000 / tempo * 60 )
             .attr('r', r)
             .on('end', () => this.animate(circle, r/2, tempo))
-    }
-
-    animateOp(circle, danceability) {
-        circle.transition()
-            .duration(500 * danceability)
-            .style('opacity', 0.25)
-            .on('end', () => this.animateOpOut(circle, danceability))
-    }
-
-    animateOpOut(circle, danceability) {
-        circle.transition()
-            .duration(500 * danceability)
-            .style('opacity', 1)
-            .on('end', () => this.animateOp(circle, danceability))
     }
 }

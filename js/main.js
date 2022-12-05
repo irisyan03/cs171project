@@ -74,7 +74,7 @@ function initMainPage(dataArray) {
     // initiate records
 
     for (let i = 0; i < 5; i++) {
-        let r= new Record(`recordVis${i+1}`, [dataArray[2][i], dataArray[5][i], dataArray[8][i]], i);
+        let r = new Record(`recordVis${i+1}`, [dataArray[2][i], dataArray[5][i], dataArray[8][i]]);
         recordList.push(r);
         console.log("record list");
         console.log(recordList);
